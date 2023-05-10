@@ -1,0 +1,49 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+     <Style Selector="Button.menuButton">
+         <!--Normal button style-->
+         <Setter Property="Height" Value="50" />
+         <Setter Property="Width" Value="250" />
+         <Setter Property="Margin" Value="5,0,0,7" />
+         <Setter Property="Background" Value="Transparent" />
+         <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
+         <Setter Property="BorderBrush" Value="Transparent"/>
+         <!--<Setter Property="Template">
+             <Setter.Value>
+                 <ControlTemplate TargetType="Button">
+                     <Border Background="{TemplateBinding Background}"
+                             BorderThickness="4,0,0,0"
+                             BorderBrush="{TemplateBinding BorderBrush}">
+                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                     </Border>
+                 </ControlTemplate>
+             </Setter.Value>
+         </Setter>-->
+         <!-- aqui van los triggers-->
+         
+     </Style>
+    
+    <!--Menu button icon-->
+    <Style Selector="i|Icon:IconImage.menuButtonIcon">
+        <Setter Property="Width" Value="22"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="Margin" Value="35,0,20,0"/>
+    </Style>
+
+    <!--Menu button text-->
+    <Style Selector="TextBlock.MenuButtonText">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontSize" Value="13.5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+</Styles>
