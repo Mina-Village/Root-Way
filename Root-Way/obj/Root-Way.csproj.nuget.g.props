@@ -4,13 +4,13 @@
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
-    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/me/.nuget/packages/</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/me/.nuget/packages/</NuGetPackageFolders>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/mabel/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/mabel/.nuget/packages/</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.5.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="/home/me/.nuget/packages/" />
+    <SourceRoot Include="/home/mabel/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)xamlnamereferencegenerator/1.6.1/buildTransitive/XamlNameReferenceGenerator.props" Condition="Exists('$(NuGetPackageRoot)xamlnamereferencegenerator/1.6.1/buildTransitive/XamlNameReferenceGenerator.props')" />
@@ -19,7 +19,7 @@
     <Import Project="$(NuGetPackageRoot)harfbuzzsharp.nativeassets.webassembly/2.8.2.1-preview.108/buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.props" Condition="Exists('$(NuGetPackageRoot)harfbuzzsharp.nativeassets.webassembly/2.8.2.1-preview.108/buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgAvalonia Condition=" '$(PkgAvalonia)' == '' ">/home/me/.nuget/packages/avalonia/0.10.19</PkgAvalonia>
-    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/home/me/.nuget/packages/microsoft.codeanalysis.analyzers/2.9.6</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgAvalonia Condition=" '$(PkgAvalonia)' == '' ">/home/mabel/.nuget/packages/avalonia/0.10.19</PkgAvalonia>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/home/mabel/.nuget/packages/microsoft.codeanalysis.analyzers/2.9.6</PkgMicrosoft_CodeAnalysis_Analyzers>
   </PropertyGroup>
 </Project>

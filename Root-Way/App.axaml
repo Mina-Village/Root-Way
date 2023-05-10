@@ -3,7 +3,7 @@
              x:Class="Root_Way.App">
 
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+        <FluentTheme Mode="Dark"/>
     </Application.Styles>
     
     <Application.Resources>

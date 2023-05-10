@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/me/RiderProjects/Root-Way/Root-Way/Root-Way.csproj": {}
+    "/home/mabel/RiderProjects/Root-Way/Root-Way/Root-Way.csproj": {}
   },
   "projects": {
-    "/home/me/RiderProjects/Root-Way/Root-Way/Root-Way.csproj": {
+    "/home/mabel/RiderProjects/Root-Way/Root-Way/Root-Way.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/me/RiderProjects/Root-Way/Root-Way/Root-Way.csproj",
+        "projectUniqueName": "/home/mabel/RiderProjects/Root-Way/Root-Way/Root-Way.csproj",
         "projectName": "Root-Way",
-        "projectPath": "/home/me/RiderProjects/Root-Way/Root-Way/Root-Way.csproj",
-        "packagesPath": "/home/me/.nuget/packages/",
-        "outputPath": "/home/me/RiderProjects/Root-Way/Root-Way/obj/",
+        "projectPath": "/home/mabel/RiderProjects/Root-Way/Root-Way/Root-Way.csproj",
+        "packagesPath": "/home/mabel/.nuget/packages/",
+        "outputPath": "/home/mabel/RiderProjects/Root-Way/Root-Way/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/me/.nuget/NuGet/NuGet.Config"
+          "/home/mabel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
