@@ -88,58 +88,56 @@
                         </StackPanel.Styles>
                     </StackPanel>
                     
-                    <StackPanel>
-                        <Button Classes="menuButton">
-                            <StackPanel Orientation="Horizontal">
-                                <!--<i:Icon Value="fa-brands fa-github"/>-->
-                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-gauge-high" 
-                                          Foreground="{StaticResource color1}"
-                                          FontSize="20"/>
-                                <TextBlock Classes="MenuButtonText" Text="Dashboard"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="menuButton">
-                            <StackPanel Orientation="Horizontal">
-                                <!--<i:Icon Value="fa-brands fa-github"/>-->
-                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-glasses" 
-                                          Foreground="{StaticResource color2}"/>
-                                <TextBlock Classes="MenuButtonText" Text="OSINT"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="menuButton">
-                            <StackPanel Orientation="Horizontal">
-                                <!--<i:Icon Value="fa-brands fa-github"/>-->
-                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-arrow-down-1-9" 
-                                          Foreground="{StaticResource color3}"/>
-                                <TextBlock Classes="MenuButtonText" Text="Enumeration"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="menuButton">
-                            <StackPanel Orientation="Horizontal">
-                                <!--<i:Icon Value="fa-brands fa-github"/>-->
-                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-spider" 
-                                          Foreground="{StaticResource color4}"/>
-                                <TextBlock Classes="MenuButtonText" Text="Exploitation"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="menuButton">
-                            <StackPanel Orientation="Horizontal">
-                                <!--<i:Icon Value="fa-brands fa-github"/>-->
-                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crosshairs" 
-                                          Foreground="{StaticResource color5}"/>
-                                <TextBlock Classes="MenuButtonText" Text="Post Exploitation"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="menuButton">
-                            <StackPanel Orientation="Horizontal">
-                                <!--<i:Icon Value="fa-brands fa-github"/>-->
-                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crown" 
-                                          Foreground="{StaticResource color6}"/>
-                                <TextBlock Classes="MenuButtonText" Text="Privilege escalation"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-                </StackPanel>     
+                    <Button Classes="menuButton">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<i:Icon Value="fa-brands fa-github"/>-->
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-gauge-high" 
+                                      Foreground="{StaticResource color1}"
+                                      FontSize="20"/>
+                            <TextBlock Classes="MenuButtonText" Text="Dashboard"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="menuButton">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<i:Icon Value="fa-brands fa-github"/>-->
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-glasses" 
+                                      Foreground="{StaticResource color2}"/>
+                            <TextBlock Classes="MenuButtonText" Text="OSINT"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="menuButton">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<i:Icon Value="fa-brands fa-github"/>-->
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-arrow-down-1-9" 
+                                      Foreground="{StaticResource color3}"/>
+                            <TextBlock Classes="MenuButtonText" Text="Enumeration"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="menuButton">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<i:Icon Value="fa-brands fa-github"/>-->
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-spider" 
+                                      Foreground="{StaticResource color4}"/>
+                            <TextBlock Classes="MenuButtonText" Text="Exploitation"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="menuButton">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<i:Icon Value="fa-brands fa-github"/>-->
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crosshairs" 
+                                      Foreground="{StaticResource color5}"/>
+                            <TextBlock Classes="MenuButtonText" Text="Post Exploitation"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="menuButton">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<i:Icon Value="fa-brands fa-github"/>-->
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crown" 
+                                      Foreground="{StaticResource color6}"/>
+                            <TextBlock Classes="MenuButtonText" Text="Privilege escalation"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
             </Border>
 
             <!--Main Section-->
@@ -151,6 +149,27 @@
                         <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--Control bar-->
+                        <RowDefinition Height="25"/>
+                        <!--Header / Caption-->
+                        <RowDefinition Height="35"/>
+                        <!--Content section / Child views-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--Control bar-->
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                PointerPressed="pnlControlBar_PointerPressed"
+                                PointerEnter="pnlControlBar_PointerEnter">
+                    </StackPanel>
+                </Grid>    
             </Border>
         </Grid>
     </Border>

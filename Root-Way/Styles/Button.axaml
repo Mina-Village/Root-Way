@@ -28,8 +28,8 @@
              </Setter.Value>
          </Setter>-->
          <!-- aqui van los triggers-->
-         
      </Style>
+    
     
     <!--Menu button icon-->
     <Style Selector="i|Icon:IconImage.menuButtonIcon">
