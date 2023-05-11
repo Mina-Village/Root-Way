@@ -13,7 +13,10 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
     
-    private void pnlControlBar_PointerPressed(object sender, PointerPressedEventArgs e)
+    // Lo mismo que dije en MainWindow.axaml: 
+    // ** En principio esto no hace falta ya que en avalonia por defecto ya te deja cerrar, minimizar y maximizar la app **
+    
+    /*private void pnlControlBar_PointerPressed(object sender, PointerPressedEventArgs e)
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
@@ -42,5 +45,5 @@ public partial class MainWindow : Window
         if (this.WindowState == WindowState.Normal)
             this.WindowState = WindowState.Maximized;
         else this.WindowState = WindowState.Normal;
-    }
+    }*/
 }

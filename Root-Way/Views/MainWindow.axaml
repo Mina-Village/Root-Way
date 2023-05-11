@@ -22,10 +22,7 @@
         <StyleInclude Source="/Styles/Button.axaml"/>
     </Window.Styles>
     
-    <!--<Button Classes="style">click</Button>-->
-    
-    <Border CornerRadius="10"                    
-            BorderThickness="1">
+    <Border BorderThickness="1">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
@@ -43,8 +40,7 @@
             </Grid.ColumnDefinitions>
 
             <!--Navigation Menu-->
-            <Border CornerRadius="10,0,0,10"
-                    Grid.Column="0">
+            <Border Grid.Column="0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
                         <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
@@ -142,8 +138,7 @@
             </Border>
 
             <!--Main Section-->
-            <Border CornerRadius="0,10,10,0"
-                    Grid.Column="1">
+            <Border Grid.Column="1">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
                         <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
@@ -160,8 +155,9 @@
                         <!--Content section / Child views-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    
                     <!--Control bar-->
-                    <StackPanel x:Name="pnlControlBar"
+                    <!--<StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
@@ -169,7 +165,17 @@
                                 Margin="0,0,5,0"
                                 PointerPressed="pnlControlBar_PointerPressed"
                                 PointerEnter="pnlControlBar_PointerEnter">
-                    </StackPanel>
+                        
+                        ** En principio esto no hace falta ya que en avalonia por defecto ya te deja cerrar, minimizar y maximizar la app **
+                        
+                        <Button Classes="controlButton">
+                            <StackPanel Orientation="Horizontal">
+                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-circle-xmark" 
+                                          Foreground="{StaticResource color8}"/>
+                                <TextBlock Classes="MenuButtonText" Text="Scripts"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>-->
                 </Grid>    
             </Border>
         </Grid>

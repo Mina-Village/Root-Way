@@ -29,15 +29,62 @@
          </Setter>-->
          <!-- aqui van los triggers-->
      </Style>
+     
+     <!--Menu button icon-->
+     <Style Selector="i|Icon:IconImage.menuButtonIcon">
+         <Setter Property="Width" Value="22"/>
+         <Setter Property="Height" Value="22"/>
+         <Setter Property="Margin" Value="35,0,20,0"/>
+     </Style>
     
+    <!--Control bar button
+    <Style Selector="Button.controlButton">
+        <Setter Property="Width" Value="20"/>       
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>      
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->    
     
-    <!--Menu button icon-->
-    <Style Selector="i|Icon:IconImage.menuButtonIcon">
-        <Setter Property="Width" Value="22"/>
-        <Setter Property="Height" Value="22"/>
-        <Setter Property="Margin" Value="35,0,20,0"/>
-    </Style>
-
+    <!--Control button icon
+    <Style Selector="i|Icon:IconImage.controlButtonIcon">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        <Setter Property="Width" Value="9"/>
+        <Setter Property="Height" Value="9"/>
+    </Style>-->
+    
+    <!--Icon Button icon
+    <Style Selector="i|Icon:IconImage.iconButtonIcon">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+    </Style>-->
+    
+    <!--Icon button
+    <Style Selector="Button.iconButton">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor1}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+    
     <!--Menu button text-->
     <Style Selector="TextBlock.MenuButtonText">
         <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
