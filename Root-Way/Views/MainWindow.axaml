@@ -156,26 +156,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <!--Control bar-->
-                    <!--<StackPanel x:Name="pnlControlBar"
-                                Grid.Row="0"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Background="Transparent"
-                                Margin="0,0,5,0"
-                                PointerPressed="pnlControlBar_PointerPressed"
-                                PointerEnter="pnlControlBar_PointerEnter">
-                        
-                        ** En principio esto no hace falta ya que en avalonia por defecto ya te deja cerrar, minimizar y maximizar la app **
-                        
-                        <Button Classes="controlButton">
-                            <StackPanel Orientation="Horizontal">
-                                <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-circle-xmark" 
-                                          Foreground="{StaticResource color8}"/>
-                                <TextBlock Classes="MenuButtonText" Text="Scripts"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>-->
+                    
                 </Grid>    
             </Border>
         </Grid>

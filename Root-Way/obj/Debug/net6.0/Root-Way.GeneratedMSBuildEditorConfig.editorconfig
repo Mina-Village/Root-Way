@@ -11,16 +11,19 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Root-Way
-build_property.ProjectDir = /home/me/RiderProjects/Root-Way/Root-Way/
+build_property.ProjectDir = /home/mabel/RiderProjects/Root-Way/Root-Way/
 
-[/home/me/RiderProjects/Root-Way/Root-Way/App.axaml]
+[/home/mabel/RiderProjects/Root-Way/Root-Way/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/me/RiderProjects/Root-Way/Root-Way/Styles/Button.axaml]
+[/home/mabel/RiderProjects/Root-Way/Root-Way/Styles/Button.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/me/RiderProjects/Root-Way/Root-Way/Styles/UIColors.axaml]
+[/home/mabel/RiderProjects/Root-Way/Root-Way/Styles/UIColors.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/me/RiderProjects/Root-Way/Root-Way/Views/MainWindow.axaml]
+[/home/mabel/RiderProjects/Root-Way/Root-Way/Views/LoginWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/mabel/RiderProjects/Root-Way/Root-Way/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -1,0 +1,176 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        TransparencyLevelHint="Transparent"
+        x:Class="Root_Way.Views.LoginWindow"
+        Title="LoginWindow">
+    
+    <Window.Styles>
+        <StyleInclude Source="/Styles/Button.axaml"/>
+    </Window.Styles>
+    
+    <Border>
+        <Border.Background>
+            <ImageBrush Source="/Assets/fondo.png"
+                        Stretch="None"/>
+        </Border.Background>
+            
+        <Border BorderThickness="2"
+                Opacity="0.70">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.75"/>
+                    <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1b1448" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="LOGIN"
+                               Foreground="DarkGray"
+                               FontSize="10"
+                               FontFamily="Montserrat"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+                </Grid>
+
+                <StackPanel Width="250"
+                            Grid.Row="2"
+                            Orientation="Vertical"
+                            Margin="0,10,0,0">
+
+                    <Image Source="/Assets/logo.png"
+                           Width="110"/>
+
+                    <TextBlock Text="ROOT  WAY"
+                               Foreground="White"
+                               FontSize="20"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Protect your website with our security lab."
+                               Foreground="LightGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextAlignment="Center"
+                               Margin="0,5,0,0"/>
+
+                    <TextBlock Text="Username"
+                               Foreground="darkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,40,0,0"/>
+
+                    <TextBox x:Name="TxtUser"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Foreground="White"
+                               CaretBrush="LightGray"
+                               BorderBrush="SteelBlue"
+                               BorderThickness="0,0,0,1"
+                               Height="28"
+                               VerticalContentAlignment="Center"
+                               Margin="0,5,0,0"
+                               Padding="20,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush Source="/Assets/logo.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <TextBlock Text="Password"
+                               Foreground="darkGray"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,15,0,0"/>
+
+                    <TextBox PasswordChar="*" x:Name="TxtPass"
+                             FontSize="13"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="SteelBlue"
+                             BorderThickness="0,0,0,1"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0"
+                             Padding="20,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush Source="/Assets/logo.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <Button x:Name="BtnLogin"
+                            BorderThickness="0"
+                            Content="LOGIN"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Background ="{StaticResource panelColor}"
+                            Grid.Column="2"
+                            Margin="90,35,0,0"
+                            ><!--Click="btnLogin_Click"-->
+
+                        <!--<Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="100" Height="30"
+                                        CornerRadius="15"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>-->
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,15,0,0">
+                        
+                        <TextBlock Text="Forgot Password"
+                               Foreground="White"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Cursor="Hand"
+                               Margin="0,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+        </Border>
+</Window>
