@@ -28,16 +28,15 @@
              </Setter.Value>
          </Setter>-->
          <!-- aqui van los triggers-->
-         
+     </Style>
+     
+    <!--Menu button icon-->
+     <Style Selector="i|Icon:IconImage.menuButtonIcon">
+         <Setter Property="Width" Value="22"/>
+         <Setter Property="Height" Value="22"/>
+         <Setter Property="Margin" Value="35,0,20,0"/>
      </Style>
     
-    <!--Menu button icon-->
-    <Style Selector="i|Icon:IconImage.menuButtonIcon">
-        <Setter Property="Width" Value="22"/>
-        <Setter Property="Height" Value="22"/>
-        <Setter Property="Margin" Value="35,0,20,0"/>
-    </Style>
-
     <!--Menu button text-->
     <Style Selector="TextBlock.MenuButtonText">
         <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
