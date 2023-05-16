@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
@@ -66,7 +67,7 @@
                     <Image Source="/Assets/logo.png"
                            Width="110"/>
 
-                    <TextBlock Text="ROOT  WAY"
+                    <TextBlock Text="ROOT WAY"
                                Foreground="White"
                                FontSize="20"
                                FontWeight="Medium"
@@ -99,11 +100,11 @@
                                Height="28"
                                VerticalContentAlignment="Center"
                                Margin="0,5,0,0"
-                               Padding="20,0,0,0">
+                               Padding="30,0,0,0">
                         <TextBox.Background>
-                            <ImageBrush Source="/Assets/logo.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
+                            <ImageBrush Source="/Assets/user.png"
+                                        AlignmentX="Left"
+                                        Stretch="Uniform"/>
                         </TextBox.Background>
                     </TextBox>
 
@@ -125,11 +126,11 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
-                             Padding="20,0,0,0">
+                             Padding="30,0,0,0">
                         <TextBox.Background>
-                            <ImageBrush Source="/Assets/logo.png"
-                                        Stretch="None"
-                                        AlignmentX="Left"/>
+                            <ImageBrush Source="/Assets/pass.png"
+                                        AlignmentX="Left"
+                                        Stretch="Uniform"/>
                         </TextBox.Background>
                     </TextBox>
 
@@ -142,7 +143,7 @@
                             Cursor="Hand"
                             Background ="{StaticResource panelColor}"
                             Grid.Column="2"
-                            Margin="90,35,0,0"
+                            Margin="100,35,0,0"
                             ><!--Click="btnLogin_Click"-->
 
                         <!--<Button.Template>
