@@ -3,18 +3,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
-        xmlns:viewModel="clr-namespace:Root_Way.ViewModels"
+        
+        xmlns:vm="using:Root_Way.ViewModels"
+        xmlns:viewModels="clr-namespace:Root_Way.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         TransparencyLevelHint="Transparent"
         x:Class="Root_Way.Views.LoginWindow"
         Title="LoginWindow"
-        x:DataType="viewModel:LoginWindowViewModel">
+        x:DataType="viewModels:LoginWindowViewModel">
     
-    <Window.DataContext>
-        <viewModel:LoginWindowViewModel/>
-    </Window.DataContext>
+    <Design.DataContext>
+        <vm:LoginWindowViewModel />
+    </Design.DataContext>
     
     <!--<Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
@@ -104,7 +106,7 @@
                                Margin="0,40,0,0"/>
 
                     <TextBox x:Name="TxtUser"
-                               Text="{Binding Username}"
+                               
                                FontSize="13"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -131,7 +133,7 @@
                                Margin="0,15,0,0"/>
 
                     <TextBox PasswordChar="*" x:Name="TxtPass"
-                             Text="{Binding Password, Mode=TwoWay}"
+                             
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"
@@ -150,13 +152,13 @@
                         </TextBox.Background>
                     </TextBox>
                     
-                    <TextBlock Text="{Binding ErrorMessage}"
+                    <!--<TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#D7596D"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Margin="0,15,0,0"
-                               TextWrapping="Wrap"/>
+                               TextWrapping="Wrap"/>-->
 
                     <Button x:Name="BtnLogin"
                             Command="{Binding LoginCommand}"

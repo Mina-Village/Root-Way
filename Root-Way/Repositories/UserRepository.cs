@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Data;
 using System.Net;
 using Root_Way.Models;
 using MySql.Data.MySqlClient;
@@ -16,7 +15,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         {
             connection.Open();
             command.Connection = connection;
-            command.CommandText = "select *from User where username=@username and password=@password";
+            command.CommandText = "select *from `User` where username=@username and password=@password";
             command.Parameters.Add("@username", MySqlDbType.VarChar).Value = credential.UserName;
             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = credential.Password;
             validUser = command.ExecuteScalar() != null;
@@ -26,17 +25,17 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public void Add(UserModel userModel)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public void Edit(UserModel userModel)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public void Remove(int id)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public UserModel GetById(int id)
@@ -46,7 +45,7 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public UserModel GetByUsername(string username)
     {
-        UserModel user = null;
+        UserModel? user = null; 
         using (var connection = GetConnection())
         using (var command = new MySqlCommand())
         {
