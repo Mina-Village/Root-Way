@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace Root_Way.ViewModels;
 
-public abstract class ViewModelBase : INotifyPropertyChanged, IReactiveObject
+public abstract class ViewModelBase : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -11,15 +11,5 @@ public abstract class ViewModelBase : INotifyPropertyChanged, IReactiveObject
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
-    public event PropertyChangingEventHandler? PropertyChanging;
-    public void RaisePropertyChanging(PropertyChangingEventArgs args)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void RaisePropertyChanged(PropertyChangedEventArgs args)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }

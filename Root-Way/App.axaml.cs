@@ -28,6 +28,7 @@ public partial class App : Application
             {
                 var mainWindow = new MainWindow();
                 mainWindow.Show();
+                loginWindow.Close();
             };
         }
 
