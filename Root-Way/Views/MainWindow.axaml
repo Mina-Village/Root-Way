@@ -4,47 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:views="clr-namespace:Root_Way.Views"
+        Width="900"
+        Height="550"
         x:Class="Root_Way.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/logo.png"
         Title="Root_Way"
         TransparencyLevelHint="Transparent"
-        Background="Transparent">
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)-->
+        <vm:MainWindowViewModel />
     </Design.DataContext>
-    
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:HomeWindowViewModel}">
+                <views:HomeWindow/>
+        </DataTemplate>
+    </Window.DataTemplates>
+
     <Window.Styles>
-        <StyleInclude Source="/Styles/Button.axaml"/>
+        <StyleInclude Source="/Styles/Button.axaml" />
     </Window.Styles>
-    
+
     <Border BorderThickness="1">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
-                <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.5"/>
-                <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
+                <GradientStop Color="{StaticResource winBorderColor1}" Offset="0" />
+                <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.5" />
+                <GradientStop Color="{StaticResource winBorderColor3}" Offset="1" />
             </LinearGradientBrush>
         </Border.BorderBrush>
         <Grid>
             <Grid.ColumnDefinitions>
                 <!--Navigation menu-->
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250" />
 
                 <!--Content section-->
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <!--Navigation Menu-->
             <Border Grid.Column="0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
-                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0" />
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
 
@@ -54,14 +63,14 @@
                                 Height="35"
                                 Margin="30,25,0,40">
 
-                        <Image Source="/Assets/logo.png" Height="60"/>
+                        <Image Source="/Assets/logo.png" Height="60" />
                         <TextBlock Text="ROOT WAY"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
                                    FontFamily="Montserrat"
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
-                                   Margin="5,0,0,0"/>
+                                   Margin="5,0,0,0" />
                     </StackPanel>
 
                     <!--Styles/Triggers of Buttons on actions-->
@@ -69,69 +78,72 @@
                         <!--Button Style on hover-->
                         <StackPanel.Styles>
                             <Style Selector="Button:pointerover">
-                                <Setter Property="Margin" Value="0,0,0,5"/>
-                                <Setter Property="Background" Value="{StaticResource color2}"/>
-                                <Setter Property="Foreground" Value="{StaticResource titleColor3}"/>
-                                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                                <Setter Property="Margin" Value="0,0,0,5" />
+                                <Setter Property="Background" Value="{StaticResource color2}" />
+                                <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
+                                <Setter Property="BorderBrush"
+                                        Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
                             </Style>
                             <!--Activated button style-->
                             <Style Selector="Button:hover">
-                                <Setter Property="Margin" Value="0,0,0,5"/>
-                                <Setter Property="Background" Value="{StaticResource color7}"/>
-                                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
-                                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                                <Setter Property="Margin" Value="0,0,0,5" />
+                                <Setter Property="Background" Value="{StaticResource color7}" />
+                                <Setter Property="Foreground"
+                                        Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
+                                <Setter Property="BorderBrush"
+                                        Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
                             </Style>
                         </StackPanel.Styles>
                     </StackPanel>
-                    
-                    <Button Classes="menuButton">
+
+                    <Button Classes="menuButton" Command="{Binding ShowHomeViewCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-gauge-high" 
-                                      Foreground="{StaticResource color1}"/>
-                                      <!--FontSize="20"-->
-                            <TextBlock Classes="MenuButtonText" Text="Dashboard"/>
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-gauge-high"
+                                      Foreground="{StaticResource color1}" />
+                            <!--FontSize="20"-->
+                            <TextBlock Classes="MenuButtonText" Text="Dashboard" />
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="menuButton" Command="{Binding ShowCustomerViewCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-user-secret"
+                                      Foreground="{StaticResource color2}" />
+                            <TextBlock Classes="MenuButtonText" Text="OSINT" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton">
                         <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-user-secret" 
-                                      Foreground="{StaticResource color2}"/>
-                            <TextBlock Classes="MenuButtonText" Text="OSINT"/>
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-arrow-down-1-9"
+                                      Foreground="{StaticResource color3}" />
+                            <TextBlock Classes="MenuButtonText" Text="Enumeration" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton">
                         <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-arrow-down-1-9" 
-                                      Foreground="{StaticResource color3}"/>
-                            <TextBlock Classes="MenuButtonText" Text="Enumeration"/>
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-spider"
+                                      Foreground="{StaticResource color4}" />
+                            <TextBlock Classes="MenuButtonText" Text="Exploitation" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton">
                         <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-spider" 
-                                      Foreground="{StaticResource color4}"/>
-                            <TextBlock Classes="MenuButtonText" Text="Exploitation"/>
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crosshairs"
+                                      Foreground="{StaticResource color5}" />
+                            <TextBlock Classes="MenuButtonText" Text="Post Exploitation" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton">
                         <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crosshairs" 
-                                      Foreground="{StaticResource color5}"/>
-                            <TextBlock Classes="MenuButtonText" Text="Post Exploitation"/>
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crown"
+                                      Foreground="{StaticResource color6}" />
+                            <TextBlock Classes="MenuButtonText" Text="Privilege escalation" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton">
                         <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crown" 
-                                      Foreground="{StaticResource color6}"/>
-                            <TextBlock Classes="MenuButtonText" Text="Privilege escalation"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Classes="menuButton">
-                        <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-terminal" 
-                                      Foreground="{StaticResource color8}"/>
-                            <TextBlock Classes="MenuButtonText" Text="Scripts"/>
+                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-terminal"
+                                      Foreground="{StaticResource color8}" />
+                            <TextBlock Classes="MenuButtonText" Text="Scripts" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -141,23 +153,106 @@
             <Border Grid.Column="1">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
-                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
-                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0" />
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
-                
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--Control bar-->
-                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25" />
                         <!--Header / Caption-->
-                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35" />
                         <!--Content section / Child views-->
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    
-                    
-                </Grid>    
+
+                    <!--Header / Caption-->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Caption-->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <i:Icon Value="fa-solid fa-gauge-high"
+                                    Height="20"
+                                    Width="20"
+                                    Foreground="{StaticResource titleColor2}"
+                                    Margin="20,0,10,0" />
+
+                            <TextBlock Text="{Binding Caption}"
+                                       Foreground="{StaticResource titleColor2}"
+                                       FontSize="12"
+                                       FontFamily="Montserrat"
+                                       FontWeight="ExtraLight"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <!--User options-->
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Margin="30,0,10,0">
+                            <Button Classes="menuButton"
+                                    Width="28"
+                                    Height="30">
+                                <StackPanel Orientation="Horizontal">
+                                    <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-regular fa-bell"
+                                              Foreground="{StaticResource color2}"
+                                              Width="15"
+                                              Padding="0" />
+                                    <TextBlock Classes="MenuButtonText" />
+                                </StackPanel>
+                            </Button>
+                            <Button Classes="menuButton"
+                                    Width="28"
+                                    Height="30">
+                                <StackPanel Orientation="Horizontal">
+                                    <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-regular fa-envelope"
+                                              Foreground="{StaticResource color2}"
+                                              Width="15"
+                                              Padding="0" />
+                                    <TextBlock Classes="MenuButtonText" />
+                                </StackPanel>
+                            </Button>
+                            <Button Classes="menuButton"
+                                    Width="28"
+                                    Height="30">
+                                <StackPanel Orientation="Horizontal">
+                                    <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-regular fa-clock"
+                                              Foreground="{StaticResource color2}"
+                                              Width="15"
+                                              Padding="0" />
+                                    <TextBlock Classes="MenuButtonText" />
+                                </StackPanel>
+                            </Button>
+                            <Ellipse Height="35" Width="35"
+                                     Stroke="{StaticResource color2}"
+                                     StrokeThickness="2"
+                                     Margin="30,0,10,0">
+                                <Ellipse.Fill>
+                                    <ImageBrush Source="/Assets/logo.png" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="Username"
+                                       Foreground="{StaticResource titleColor3}"
+                                       FontFamily="Montserrat"
+                                       FontSize="12"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Content section / Child views-->
+                    <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="25" />
+
+                </Grid>
             </Border>
         </Grid>
     </Border>

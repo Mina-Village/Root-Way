@@ -81,15 +81,6 @@ public class LoginWindowViewModel : ViewModelBase
 
     private bool CanExecuteLoginCommand(object obj)
     {
-        /*bool validData;
-        if (string.IsNullOrEmpty(Username) && string.IsNullOrEmpty(Password))
-        {
-            validData = false;
-        }
-
-        else
-            validData = true;*/
-
         return true;
     }
 
@@ -99,6 +90,7 @@ public class LoginWindowViewModel : ViewModelBase
         if (isValidUser)
         {
             var mainWindow = new MainWindow();
+            var loginWindow = new LoginWindow();
             mainWindow.Show();
             //aqui hay que cambiar algo, porque con el codigo de abajo no arranca el mainwindow
             //si lo ponga a mano si que va, pero hace algo raro, como si lo abriera 2 veces pero estuviese oculto.

@@ -3,7 +3,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
-        
         xmlns:vm="using:Root_Way.ViewModels"
         xmlns:viewModels="clr-namespace:Root_Way.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
