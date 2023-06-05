@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Root_Way.ViewModels;
 
 namespace Root_Way.Views;
 
@@ -8,14 +10,11 @@ public partial class LoginWindow : Window
 {
     public LoginWindow()
     {
-        InitializeComponent();
-#if DEBUG
-        this.AttachDevTools();
-#endif
+       InitializeComponent();
+       DataContext = new LoginWindowViewModel();
     }
 
-    private void InitializeComponent()
+    private void btnLogin_Click(object sender, RoutedEventArgs e)
     {
-        AvaloniaXamlLoader.Load(this);
     }
 }

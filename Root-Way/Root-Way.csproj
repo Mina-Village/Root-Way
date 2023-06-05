@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
@@ -24,8 +23,15 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.19" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.19" />
+        <PackageReference Include="Avalonia.ReactiveUI.Events" Version="0.10.19" />
+        <PackageReference Include="MySql.Data" Version="8.0.33" />
         <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="5.13.0" />
         <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="5.13.0" />
+        <PackageReference Include="ReactiveUI" Version="13.2.10" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="CustomControls\BindablePasswordBox.axaml" />
     </ItemGroup>
 </Project>
