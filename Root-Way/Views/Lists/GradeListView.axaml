@@ -1,0 +1,315 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:elementButtonControls="clr-namespace:Root_Way.Views.Lists.ElementButtonControls"
+             xmlns:customControls="clr-namespace:Root_Way.CustomControls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Root_Way.Views.Lists.GradeListView"
+             xmlns:lists="clr-namespace:Root_Way.ViewModels.Lists"
+             x:DataType="lists:GradeListViewModel">
+
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/ContextMenuStyle.axaml"/>
+        <StyleInclude Source="/Styles/ListViewStyle.axaml"/>
+
+        <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource VariantElementBackground}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="elementButtonControls:GridButton">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+                <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="52" Margin="10,0">
+                    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="UpOnly">
+                        <TextBlock Text="{Binding GradeRef.Name}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
+                                   FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" TextAlignment="Center"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="18"/>
+                    </Viewbox>
+                </Panel>
+                <Grid Grid.Row="1" RowDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
+                                   Margin="0,0,10,0" Width="28" Height="28"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <!-- TODO: Consider themes when implemented -->
+                            <TextBlock Grid.Column="1" TextAlignment="Center"
+                                       Text="{Binding GradeRef.DateString}"
+                                       Foreground="{StaticResource StandardGrey}" FontSize="26"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8, 0, 25, 0"/>
+                            <!--TODO: Consider culture-->
+                        </Grid>
+                        <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="32" Height="32"
+                                   Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
+                            <TextBlock Grid.Column="1" TextAlignment="Center" Foreground="{StaticResource StandardGrey}"
+                                       FontSize="30" Text="{Binding Path=GradeRef.Weighting}"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" Margin="0,15,0,0"
+                          IsVisible="{Binding GradeRef.IsMultiGrade}">
+                        <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28" 
+                               Margin="0,0,10,0"/>
+                        <!--<TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
+                                   Text="{Binding Path=GradeRef.Grades.Count}"
+                                   Foreground="{StaticResource StandardGrey}"/>-->
+                    </Grid>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="26" Foreground="{StaticResource StandardGrey}"
+                               Margin="0,15,0,0" IsVisible="{Binding GradeRef.PointsSpecified}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="\{0\}/\{1\}">
+                                <Binding Path="GradeRef.ScoredPoints"/>
+                                <Binding Path="GradeRef.MaxPoints"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+                <Panel Grid.Row="2" VerticalAlignment="Stretch">
+                    <TextBlock Text="{Binding GradeRef.RoundedGrade}" Opacity="{Binding GradeRef.GradeTextOpacity}"
+                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="{StaticResource OppositeAccent}" FontSize="46" FontWeight="Bold">
+                    </TextBlock>
+                </Panel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="elementButtonControls:ListButton">
+            <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Column="0" ColumnDefinitions="2*,1*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}" FontSize="36" FontWeight="Bold"
+                               Foreground="{StaticResource OppositeAccent}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    <Grid Grid.Column="1" RowDefinitions="*,*" ColumnDefinitions="Auto,Auto" Margin="60,0,0,0" 
+                          HorizontalAlignment="Right">
+                        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" 
+                              VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
+                                   Margin="0,0,10,0" Width="28" Height="28"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <!-- TODO: Consider themes when implemented -->
+                            <TextBlock Grid.Column="1" TextAlignment="Center"
+                                       Text="{Binding GradeRef.DateString}"
+                                       Foreground="{StaticResource StandardGrey}" FontSize="26"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8, 0, 25, 0"/>
+                            <!--TODO: Consider culture-->
+                        </Grid>
+                        <Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" 
+                              VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30" Height="30"
+                                   Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Text="{Binding Path=GradeRef.Weighting}"
+                                       Foreground="{StaticResource StandardGrey}" FontSize="28"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ColumnDefinitions="Auto,Auto" 
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"
+                              IsVisible="{Binding GradeRef.IsMultiGrade}">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28" 
+                                   Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <!--<TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30" VerticalAlignment="Center"
+                                       Text="{Binding Path=GradeRef.Grades.Count}"
+                                       Foreground="{StaticResource StandardGrey}"/>-->
+                        </Grid>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                   FontSize="26" Foreground="{StaticResource StandardGrey}" Margin="20,0,0,0" 
+                                   IsVisible="{Binding GradeRef.PointsSpecified}">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="\{0\}/\{1\}">
+                                    <Binding Path="GradeRef.ScoredPoints"/>
+                                    <Binding Path="GradeRef.MaxPoints"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Grid>
+                </Grid>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Text="{Binding GradeRef.RoundedGrade}" FontSize="42" FontWeight="Bold" 
+                           Foreground="{StaticResource OppositeAccent}" Margin="0,0,10,0"
+                           Opacity="{Binding GradeRef.GradeTextOpacity}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <!--<UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Paste Grade"
+                      Command="{Binding $parent[Window].DataContext.PasteCopiedElement}"
+                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"
+                      HotKey="CTRL+V"/>
+            <MenuItem Header="Sort by" IsEnabled="False">
+                <MenuItem Header="Grade">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="GradeAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="GradeDescending"/>
+                </MenuItem>
+                <MenuItem Header="Counts?">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CountsAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CountsDescending"/>
+                </MenuItem>
+                <MenuItem Header="Creation Date">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateDescending"/>
+                </MenuItem>
+                <MenuItem Header="Date"
+                          Command="{Binding SortElements}"
+                          CommandParameter="DateAscending">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="DateAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="DateDescending"/>
+                </MenuItem>
+                <MenuItem Header="Name">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameDescending"/>
+                </MenuItem>
+                <MenuItem Header="Weighting">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="WeightingAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="WeightingDescending"/>
+                </MenuItem>
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>-->
+
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <WrapPanel Classes="no-elements-panel"
+                   IsEnabled="{Binding EmptyCollection}"
+                   IsVisible="{Binding EmptyCollection}">
+            <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
+                This subject doesn't yet contain grades. You can add a new grade with the green button
+            </TextBlock>
+            <StackPanel Classes="no-elements-panel">
+                <Viewbox Width="40" Height="40" VerticalAlignment="Center">
+                    <Grid Width="24" Height="24">
+                        <Ellipse Stroke="{StaticResource AppGreen}" StrokeThickness="1.333"
+                                 Fill="{StaticResource FullyTransparent}"/>
+                        <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="{StaticResource AppGreen}"/>
+                    </Grid>
+                </Viewbox>
+                <TextBlock Classes="no-elements-text" Margin="8,0,0,0" Text="in the bottom-right corner."/>
+            </StackPanel>
+        </WrapPanel>
+
+        <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ContentControl Content="{Binding IsViewGrid}">
+                <ContentControl.Resources>
+                    <DataTemplate x:Key="GradeItemTemplate">
+                        <Button Command="{Binding $parent[Window].DataContext.OpenGrade}"
+                                CommandParameter="{Binding}"
+                                Classes="element-button selectable-button-effect"
+                                Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
+                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
+                                Opacity="{Binding ElementsOpacity}" Padding="0">
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Edit Grade"
+                                              Command="{Binding $parent[Window].DataContext.EditGrade}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Copy Grade"
+                                              Command="{Binding $parent[Window].DataContext.CopyElement}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Duplicate Grade"
+                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                              CommandParameter="{Binding}">
+                                    </MenuItem>
+                                    <MenuItem Header="Remove Grade"
+                                              Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                              CommandParameter="{Binding}">
+                                        <MenuItem.Styles>
+                                            <Style Selector="MenuItem:pointerover /template/ Border">
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource LightRedContextMenu}"/>
+                                            </Style>
+                                            <Style Selector="MenuItem:pressed /template/ Border">
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource DarkerLightRedContextMenu}"/>
+                                            </Style>
+                                        </MenuItem.Styles>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                            <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <ContentControl HorizontalAlignment="Stretch" Content="{Binding ButtonStyle}"/>
+                                <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
+                            </Panel>
+                        </Button>
+                    </DataTemplate>
+                </ContentControl.Resources>
+                <ContentControl.DataTemplates>
+                    <customControls:PanelTemplateSelector>
+                        <DataTemplate x:Key="True">
+                            <ItemsControl Items="{Binding Items}"
+                                          ItemTemplate="{StaticResource ResourceKey=GradeItemTemplate}"
+                                          DataContext="{Binding $parent[UserControl].DataContext}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                        <DataTemplate x:Key="False">
+                            <ItemsControl Items="{Binding Items}"
+                                          ItemTemplate="{StaticResource ResourceKey=GradeItemTemplate}"
+                                          DataContext="{Binding $parent[UserControl].DataContext}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </customControls:PanelTemplateSelector>
+                </ContentControl.DataTemplates>
+            </ContentControl>
+        </ScrollViewer>-->
+
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="37.5, 0, 0, 20"
+                Width="175" Height="175" Command="{Binding OpenTargetGradeCalc}">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/Assets/Images/Dark/Calculator-Dark.png" Width="175" Height="175"/>
+                    <!-- TODO: Consider themes when implemented -->
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Styles>
+                <Style Selector="Button:pointerover">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="RenderTransform" Value="scale(0.95)"/>
+                </Style>
+                <Style Selector="Button:pressed">
+                    <Setter Property="RenderTransform" Value="scale(0.90)"/>
+                </Style>
+            </Button.Styles>
+            <Button.Transitions>
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                </Transitions>
+            </Button.Transitions>
+        </Button>
+    </Panel>
+</UserControl>

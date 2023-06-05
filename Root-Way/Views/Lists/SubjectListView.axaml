@@ -1,0 +1,268 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:elementButtonControls="clr-namespace:Root_Way.Views.Lists.ElementButtonControls"
+             xmlns:customControls="clr-namespace:Root_Way.CustomControls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Root_Way.Views.Lists.SubjectListView">
+
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/ContextMenuStyle.axaml"/>
+        <StyleInclude Source="/Styles/ListViewStyle.axaml"/>
+    </UserControl.Styles>
+
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="elementButtonControls:GridButton">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+                <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="52" Margin="10,0">
+                    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="UpOnly">
+                        <TextBlock Text="{Binding SubjectRef.Name}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
+                                   FontWeight="Bold" Foreground="{Binding SubjectRef.TitleBrush}" FontSize="18"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Viewbox>
+                </Panel>
+                <Panel Grid.Row="1" VerticalAlignment="Stretch">
+                    <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
+                        <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,25,0">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
+                                       Text="{Binding Path=SubjectRef.Grades.Count}"
+                                       Foreground="{Binding SubjectRef.AdditionalInfoColor}"/>
+                        </Grid>
+                        <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" 
+                                   Width="32" Height="32" Margin="0,0,10,0"
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" 
+                                   Width="32" Height="32" Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
+                                       Text="{Binding SubjectRef.Weighting}"
+                                       Foreground="{Binding SubjectRef.AdditionalInfoColor}"/>
+                        </Grid>
+                    </Grid>
+                </Panel>
+                <Panel Grid.Row="2" VerticalAlignment="Stretch">
+                    <TextBlock Text="{Binding SubjectRef.RoundedAverage}" Opacity="{Binding SubjectRef.GradeTextOpacity}"
+                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="{StaticResource OppositeAccent}" FontSize="46" FontWeight="Bold"/>
+                </Panel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="elementButtonControls:ListButton">
+            <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Column="0" ColumnDefinitions="2*, 1*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Column="0" Text="{Binding SubjectRef.Name}" FontSize="36" FontWeight="Bold"
+                               Foreground="{Binding SubjectRef.TitleBrush}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
+                                       Text="{Binding Path=SubjectRef.Grades.Count}"
+                                       Foreground="{Binding SubjectRef.AdditionalInfoColor}"/>
+                        </Grid>
+                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" 
+                                   Width="30" Height="30" Margin="0,0,10,0"
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" 
+                                   Width="30" Height="30" Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
+                                   IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding SubjectRef.Weighting}"
+                                       Foreground="{Binding SubjectRef.AdditionalInfoColor}" FontSize="28"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Text="{Binding SubjectRef.RoundedAverage}" FontSize="42" FontWeight="Bold" 
+                           Foreground="{StaticResource OppositeAccent}" Margin="0,0,10,0" 
+                           Opacity="{Binding SubjectRef.GradeTextOpacity}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <!--<UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Paste Subject"
+                      Command="{Binding $parent[Window].DataContext.PasteCopiedElement}"
+                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"
+                      HotKey="CTRL+V"/>
+            <MenuItem Header="Sort by" IsEnabled="False">
+                <MenuItem Header="Average">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="AverageAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="AverageDescending"/>
+                </MenuItem>
+                <MenuItem Header="Counts?">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CountsAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CountsDescending"/>
+                </MenuItem>
+                <MenuItem Header="Creation Date">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateDescending"/>
+                </MenuItem>
+                <MenuItem Header="Name">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameDescending"/>
+                </MenuItem>
+                <MenuItem Header="Number of elements">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="ElementNumberAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="ElementNumberDescending"/>
+                </MenuItem>
+                <MenuItem Header="Weighting">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="WeightingAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="WeightingDescending"/>
+                </MenuItem>
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>-->
+
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <WrapPanel Classes="no-elements-panel">
+            <!-- IsEnabled="{Binding EmptyCollection}"
+                   IsVisible="{Binding EmptyCollection}"> -->
+                   
+            <TextBlock Classes="no-elements-text" Margin="0,0,8,0" HorizontalAlignment="Center">
+                This year doesn't yet contain subjects. You can add a new subject with the green button
+            </TextBlock>
+            <StackPanel Classes="no-elements-panel">
+                <Viewbox Width="40" Height="40" VerticalAlignment="Center">
+                    <Grid Width="24" Height="24">
+                        <Ellipse Stroke="{StaticResource AppGreen}" StrokeThickness="1.333"
+                                 Fill="{StaticResource FullyTransparent}"/>
+                        <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="{StaticResource AppGreen}"/>
+                    </Grid>
+                </Viewbox>
+                <TextBlock Classes="no-elements-text" Margin="8,0,0,0" Text="in the bottom-right corner."/>
+            </StackPanel>
+        </WrapPanel>
+
+        <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ContentControl Content="{Binding IsViewGrid}">
+                <ContentControl.Resources>
+                    <DataTemplate x:Key="SubjectItemTemplate">
+                        <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
+                                CommandParameter="{Binding}"
+                                Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"
+                                Classes.subject-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
+                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
+                                Opacity="{Binding ElementsOpacity}" Padding="0">
+                            <Button.Styles>
+                                <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
+                                </Style>
+                            </Button.Styles>
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Edit Subject"
+                                              Command="{Binding $parent[Window].DataContext.EditSubject}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Copy Subject"
+                                              Command="{Binding $parent[Window].DataContext.CopyElement}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Duplicate Subject"
+                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                              CommandParameter="{Binding}">
+                                    </MenuItem>
+                                    <MenuItem Header="Remove Subject"
+                                              Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                              CommandParameter="{Binding}">
+                                        <MenuItem.Styles>
+                                            <Style Selector="MenuItem:pointerover /template/ Border">
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource LightRedContextMenu}"/>
+                                            </Style>
+                                            <Style Selector="MenuItem:pressed /template/ Border">
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource DarkerLightRedContextMenu}"/>
+                                            </Style>
+                                        </MenuItem.Styles>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                            <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <ContentControl Content="{Binding ButtonStyle}"/>
+                                <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
+                            </Panel>
+                        </Button>
+                    </DataTemplate>
+                </ContentControl.Resources>
+                <ContentControl.DataTemplates>
+                    <customControls:PanelTemplateSelector>
+                        <DataTemplate x:Key="True">
+                            <ItemsControl Items="{Binding Items}"
+                                          ItemTemplate="{StaticResource ResourceKey=SubjectItemTemplate}"
+                                          DataContext="{Binding $parent[UserControl].DataContext}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                        <DataTemplate x:Key="False">
+                            <ItemsControl Items="{Binding Items}"
+                                          ItemTemplate="{StaticResource ResourceKey=SubjectItemTemplate}"
+                                          DataContext="{Binding $parent[UserControl].DataContext}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </customControls:PanelTemplateSelector>
+                </ContentControl.DataTemplates>
+            </ContentControl>
+        </ScrollViewer>-->
+    </Panel>
+</UserControl>

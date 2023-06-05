@@ -1,4 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Projektanker.Icons.Avalonia;
 using ReactiveUI;
 using Root_Way.Models;
 using Root_Way.Repositories;
@@ -11,7 +15,7 @@ public class MainWindowViewModel : ViewModelBase
     //private UserAccountModel _currentUserAccount;
     private ViewModelBase _currentChildView;
     private string _caption;
-    //private IconChar _icon;
+    private Icon _icon;
     private IUserRepository userRepository;
 
     //Properties
@@ -45,7 +49,7 @@ public class MainWindowViewModel : ViewModelBase
             OnPropertyChanged(nameof(Caption));
         }
     }
-    /*public IconChar Icon
+    public Icon Icon
     {
         get
         {
@@ -56,7 +60,7 @@ public class MainWindowViewModel : ViewModelBase
             _icon = value;
             OnPropertyChanged(nameof(Icon));
         }
-    }*/
+    }
     //--> Commands
     public ICommand ShowHomeViewCommand { get; }
     public ICommand ShowCustomerViewCommand { get; }
@@ -76,13 +80,14 @@ public class MainWindowViewModel : ViewModelBase
     {
         CurrentChildView = new OsintWindowViewModel();
         Caption = "OSINT";
-        //Icon = IconChar.UserGroup;
+        //ICON
+
     }
     private void ExecuteShowHomeViewCommand(object obj)
     {
         CurrentChildView = new HomeWindowViewModel();
-        Caption = "Dashboard";
-        //Icon = IconChar.Home;
+        Caption = "Home";
+        //Icon = Icon.Home;
     }
     
 }

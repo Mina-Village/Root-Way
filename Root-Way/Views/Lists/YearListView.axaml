@@ -1,0 +1,149 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customControls="clr-namespace:Root_Way.CustomControls"
+             xmlns:elementButtonControls="clr-namespace:Root_Way.Views.Lists.ElementButtonControls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Root_Way.Views.Lists.YearListView">
+
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/ContextMenuStyle.axaml"/>
+        <StyleInclude Source="/Styles/ListViewStyle.axaml"/>
+    </UserControl.Styles>
+
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="elementButtonControls:GridButton">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RowDefinitions="*,*">
+                <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="52" Margin="10,0">
+                    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="UpOnly">
+                        <TextBlock Text="{Binding YearRef.Name}" FontSize="18" FontWeight="Bold"
+                                   Foreground="{Binding YearRef.TitleBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                                   TextTrimming="CharacterEllipsis" TextWrapping="Wrap" MaxLines="2"/>
+                    </Viewbox>
+                </Panel>
+                <Panel Grid.Row="1" VerticalAlignment="Stretch">
+                    <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,35,0">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                                   Width="40" Height="40" Margin="0,0,15,0"
+                                   IsVisible="{Binding YearRef.DarkSymbols}"
+                                   IsEnabled="{Binding YearRef.DarkSymbols}"/>
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                                   Width="40" Height="40" Margin="0,0,15,0"
+                                   IsVisible="{Binding !YearRef.DarkSymbols}"
+                                   IsEnabled="{Binding !YearRef.DarkSymbols}"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="42"
+                                       Text="{Binding Path=YearRef.Subjects.Count}"
+                                       Foreground="{Binding YearRef.AdditionalInfoColor}"/>
+                        </Grid>
+                        <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" Margin="35,0,0,0">
+                            <TextBlock Grid.Column="0" TextAlignment="Center" FontSize="42" FontWeight="Bold"
+                                       Text="Ø" Foreground="{Binding YearRef.AdditionalInfoColor}"
+                                       Margin="0,0,15,0"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="42"
+                                       Text="{Binding Path=YearRef.GradeValue}"
+                                       Foreground="{Binding YearRef.AdditionalInfoColor}"/>
+                        </Grid>
+                    </Grid>
+                </Panel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="elementButtonControls:ListButton">
+            <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Column="0" ColumnDefinitions="2*,1*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Column="0" Text="{Binding YearRef.Name}" FontSize="36" FontWeight="Bold"
+                               Foreground="{Binding YearRef.TitleBrush}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center" 
+                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" VerticalAlignment="Center"
+                          Margin="60,0,0,0">
+                        <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                               Width="26" Height="26" Margin="0,0,15,0"
+                               IsVisible="{Binding YearRef.DarkSymbols}"
+                               IsEnabled="{Binding YearRef.DarkSymbols}"/>
+                        <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                               Width="26" Height="26" Margin="0,0,15,0"
+                               IsVisible="{Binding !YearRef.DarkSymbols}"
+                               IsEnabled="{Binding !YearRef.DarkSymbols}"/>
+                        <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="28"
+                                   Text="{Binding Path=YearRef.Subjects.Count}"
+                                   Foreground="{Binding YearRef.AdditionalInfoColor}"/>
+                    </Grid>
+                </Grid>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Text="{Binding YearRef.GradeValue}"
+                           FontSize="42" FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" Margin="0,0,10,0"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <!--<UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Paste School Year"
+                      Command="{Binding $parent[Window].DataContext.PasteCopiedElement}"
+                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"
+                      HotKey="CTRL+V"/>
+            <MenuItem Header="Sort by" IsEnabled="False">
+                <MenuItem Header="Average">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="AverageAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="AverageDescending"/>
+                </MenuItem>
+                <MenuItem Header="Creation Date">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateDescending"/>
+                </MenuItem>
+                <MenuItem Header="Name">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameDescending"/>
+                </MenuItem>
+                <MenuItem Header="Number of elements">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="ElementNumberAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="ElementNumberDescending"/>
+                </MenuItem>
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>-->
+
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <WrapPanel Classes="no-elements-panel">
+                   <!--IsEnabled="{Binding EmptyCollection}"
+                   IsVisible="{Binding EmptyCollection}">-->
+            <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
+                There are no school years yet. You can add a new year by using the green button
+            </TextBlock>
+            <StackPanel Classes="no-elements-panel">
+                <Viewbox Width="40" Height="40" VerticalAlignment="Center">
+                    <Grid Width="24" Height="24">
+                        <Ellipse Stroke="{StaticResource AppGreen}" StrokeThickness="1.333"
+                                 Fill="{StaticResource FullyTransparent}"/>
+                        <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Foreground="{StaticResource AppGreen}"/>
+                    </Grid>
+                </Viewbox>
+                <TextBlock Classes="no-elements-text" Margin="8,0,0,0" Text="in the bottom-right corner."/>
+            </StackPanel>
+        </WrapPanel>
+
+        <!-- AQUI VA EL SCROLLVIEWER-->
+    </Panel>
+</UserControl>

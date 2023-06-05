@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Root_Way.Views.TargetGrade.TargetGradeView"
+             xmlns:targetGrade="clr-namespace:Root_Way.ViewModels.TargetGrade"
+             x:DataType="targetGrade:TargetGradeViewModel">
+
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/TargetGradeStyle.axaml"/>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="*,*,*,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TextBlock Grid.Row="0" Classes="intro-text"
+                   Text="Calculate the next grade you'd need, to achieve the desired average, considering the weighting of the grade."/>
+        <TextBox Grid.Row="1" Classes="target-grade-textbox" Watermark="Target Average"
+                 Text="{Binding TargetAverageString}"/>
+        <TextBox Grid.Row="2" Classes="target-grade-textbox" Watermark="Weighting"
+                 Text="{Binding WeightingString}"/>
+        <TextBlock Grid.Row="3" Classes="result-text"
+                   Text="{Binding Path=NeededGrade, StringFormat='Needed Grade {0}'}"/>
+    </Grid>
+</UserControl>

@@ -24,8 +24,10 @@ class Program
         return AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .LogToTrace()
+            .UseReactiveUI()
             .WithIcons(container => container
                 .Register<FontAwesomeIconProvider>()
                 .Register<MaterialDesignIconProvider>());
+            
     }
 }

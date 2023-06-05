@@ -6,6 +6,7 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,14 +25,45 @@
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.19" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.19" />
         <PackageReference Include="Avalonia.ReactiveUI.Events" Version="0.10.19" />
+        <PackageReference Include="CalendarControl.Avalonia" Version="0.10.18" />
         <PackageReference Include="MySql.Data" Version="8.0.33" />
         <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="5.13.0" />
         <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="5.13.0" />
         <PackageReference Include="ReactiveUI" Version="13.2.10" />
-        <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     </ItemGroup>
 
     <ItemGroup>
       <UpToDateCheckInput Remove="CustomControls\BindablePasswordBox.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="App.axaml.cs">
+            <DependentUpon>App.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\ListViews\GradeListView.axaml.cs">
+            <DependentUpon>GradeListView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\ListViews\SubjectListView.axaml.cs">
+            <DependentUpon>SubjectListView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\ListViews\YearListView.axaml.cs">
+            <DependentUpon>YearListView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\AddPages\AddSubjectWindow.axaml.cs">
+            <DependentUpon>AddSubjectWindow.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\AddPages\AddGradeWindow.axaml.cs">
+            <DependentUpon>AddGradeWindow.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\TargetGrade\TargetGradeWindow.axaml.cs">
+            <DependentUpon>WishGradeWindow.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 </Project>

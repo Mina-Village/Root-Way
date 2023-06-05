@@ -1,0 +1,102 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converter="clr-namespace:Root_Way.Converters"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:addPages="clr-namespace:Root_Way.ViewModels.AddPages"
+        x:Class="Root_Way.Views.AddPages.AddGradeWindow"
+        Title="New Grade"
+        WindowStartupLocation="CenterOwner"
+        Width="750"
+        Height="683"
+        CanResize="False"
+        x:DataType="addPages:AddGradeViewModel">
+    
+    <Window.Styles>
+        <StyleInclude Source="/Styles/AddPagesStyle.axaml"/>
+        <StyleInclude Source="/Styles/CalendarStyle.axaml"/>
+    </Window.Styles>
+
+    <Window.Resources>
+        <converter:IntStringConverter x:Key="IntConverter"/>
+        <converter:MonthConverter x:Key="MonthConverter"/>
+    </Window.Resources>
+
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" Margin="75,0">
+            <Viewbox Grid.Row="0" Height="30" Margin="30,30,30,15">
+                <TextBlock Classes="add-page-title-text" Text="{Binding Title}" TextAlignment="Center" 
+                           TextWrapping="Wrap"/>
+            </Viewbox>
+            <TextBox Grid.Row="1" Classes="add-page-object add-page-text-box" Watermark="Name of the Grade"
+                     HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"
+                     Text="{Binding ElementName}" HorizontalAlignment="Stretch" MaxLength="64"/>
+            <Grid Grid.Row="2" Classes="add-page-object" ColumnDefinitions="Auto,*" HorizontalAlignment="Center">
+                <Border Grid.Column="0" BorderBrush="{StaticResource AppGreen}">
+                    <Grid ColumnDefinitions="Auto,Auto,Auto">
+                        <TextBox Grid.Column="0" Classes="add-page-date-picker-textbox" Width="90" MaxLength="2" Watermark="Day"
+                                 Text="{Binding SelectedDay, Converter={StaticResource IntConverter}}"
+                                 BorderBrush="{Binding BorderBrushes[1]}"/>
+                        <TextBox Grid.Column="1" Classes="add-page-date-picker-textbox" Width="200" Watermark="Month"
+                                 Text="{Binding SelectedMonth, Converter={StaticResource MonthConverter}, ConverterParameter={Binding}}"
+                                 BorderBrush="{Binding BorderBrushes[2]}"/>
+                        <TextBox Grid.Column="2" Classes="add-page-date-picker-textbox" Width="150" MaxLength="4" Watermark="Year"
+                                 Text="{Binding SelectedYear, Converter={StaticResource IntConverter}}"
+                                 BorderBrush="{Binding BorderBrushes[3]}"/>
+                    </Grid>
+                </Border>
+                <Button Grid.Column="1" Classes="selectable-button-effect" Width="50" Height="50" Margin="10,0,0,0"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding ToggleCalendar}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="/Assets/Images/Dark/Date-Dark.png" Width="50" Height="50"/> <!-- TODO: Consider themes when implemented -->
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <TextBox Grid.Row="3" Classes="add-page-object add-page-text-box" Width="100" Watermark="Grade" 
+                     HorizontalContentAlignment="Center" Text="{Binding ElementGradeString}" MaxLength="5"
+                     BorderBrush="{Binding BorderBrushes[4]}" IsEnabled="{Binding !IsMultiGrade}"/>
+            <TextBox Grid.Row="4" Classes="add-page-object add-page-text-box" Width="100" Watermark="Weighting" 
+                     HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}" MaxLength="5"
+                     BorderBrush="{Binding BorderBrushes[5]}"/>
+            <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto,Auto,Auto" Classes="add-page-object" HorizontalAlignment="Center"
+                  IsVisible="{Binding !IsMultiGrade}">
+                <CheckBox Grid.Column="0" Classes="add-page-checkbox" IsChecked="{Binding SpecifyPoints}"
+                          Margin="0,5,20,5" Content="Specify points"/>
+                <TextBox Grid.Column="1" Classes="add-page-text-box" Width="100" Height="40" Watermark="Scored"
+                         HorizontalContentAlignment="Center" Text="{Binding ElementScoredPointsString}"
+                         MaxLength="7" BorderBrush="{Binding BorderBrushes[6]}" IsEnabled="{Binding SpecifyPoints}"/>
+                <TextBlock Grid.Column="2" Foreground="{StaticResource StandardGrey}" FontSize="48"
+                           Text="/" Margin="10,0"/>
+                <TextBox Grid.Column="3" Classes="add-page-text-box" Width="100" Height="40" Watermark="Max"
+                         HorizontalContentAlignment="Center" Text="{Binding ElementMaxPointsString}"
+                         MaxLength="7" BorderBrush="{Binding BorderBrushes[7]}" IsEnabled="{Binding SpecifyPoints}"/>
+            </Grid>
+            <CheckBox Grid.Row="6" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
+                      Content="Grade counts" Margin="0,5,0,3"/>
+            <CheckBox Grid.Row="7" Classes="add-page-checkbox" IsChecked="{Binding IsMultiGrade}"
+                      Content="Partial grades" Margin="0,3,0,0" IsVisible="{Binding !IsEditing}"/>
+            <Button Grid.Row="8" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
+                    IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" 
+                    HotKey="Enter"/>
+        </Grid>
+        <Grid RowDefinitions="Auto,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+              IsEnabled="{Binding CalendarOpen}" IsVisible="{Binding CalendarOpen}"
+              Background="{StaticResource HighlyDarkenedBackground}">
+            <Calendar Grid.Row="0" Classes="add-page-calendar" IsEnabled="{Binding CalendarOpen}"
+                      IsVisible="{Binding CalendarOpen}"
+                      SelectedDate="{Binding TempSelectedDate}"
+                      SelectedDatesChanged="DisplayDateChanged">
+            </Calendar>
+            <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center">
+                <Button Grid.Column="0" Classes="add-page-button add-page-button-grey selectable-button" Content="Cancel"
+                        Background="{StaticResource StandardGrey}" Command="{Binding ToggleCalendar}"
+                        Margin="20,30"/>
+                <Button Grid.Column="1" Classes="add-page-button selectable-button" Command="{Binding SaveCalendar}"
+                        Content="Save Date" Margin="20,30"/>
+            </Grid>
+        </Grid>
+    </Panel>
+</Window>

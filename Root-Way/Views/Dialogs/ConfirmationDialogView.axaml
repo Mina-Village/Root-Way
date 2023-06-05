@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Root_Way.Views.Dialogs.ConfirmationDialogView"
+             xmlns:dialogs="clr-namespace:Root_Way.ViewModels.Dialogs"
+             x:DataType="dialogs:ConfirmationDialogViewModel">
+    
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/DialogStyle.axaml"/>
+    </UserControl.Styles>
+
+    <Panel Classes="background-panel">
+        <Border CornerRadius="20" Classes="border-front-panel">
+            <Panel>
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock Classes="title-text" DockPanel.Dock="Top" Text="{Binding Title}"/>
+                    <Grid RowDefinitions="Auto,Auto,Auto" DockPanel.Dock="Bottom" VerticalAlignment="Center">
+                        <Button Grid.Row="0" Classes="dialog-button selectable-button-effect"
+                                Background="{Binding ButtonColors[0]}"
+                                Command="{Binding Command}" CommandParameter="Confirm">
+                            <Button.Styles>
+                                <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="{Binding ButtonColorsHover[0]}"/>
+                                </Style>
+                            </Button.Styles>
+                            <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
+                                <TextBlock Foreground="{Binding ButtonTextColors[0]}"
+                                           Text="{Binding ButtonTexts[0]}"/>
+                            </Viewbox>
+                        </Button>
+                        <Button Grid.Row="1" Classes="dialog-button selectable-button-effect"
+                                Background="{Binding ButtonColors[1]}"
+                                Command="{Binding Command}" CommandParameter="Cancel">
+                            <Button.Styles>
+                                <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="{Binding ButtonColorsHover[1]}"/>
+                                </Style>
+                            </Button.Styles>
+                            <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
+                                <TextBlock Foreground="{Binding ButtonTextColors[1]}"
+                                           Text="{Binding ButtonTexts[1]}"/>
+                            </Viewbox>
+                        </Button>
+                        <CheckBox Grid.Row="2" Classes="dialog-checkbox" BorderBrush="{StaticResource StandardGrey}"
+                                  IsChecked="{Binding IgnoreDialog}" Content="Don't show again">
+                            <CheckBox.Styles>
+                                <Style Selector="CheckBox.dialog-checkbox:checked /template/ Border#NormalRectangle">
+                                    <Setter Property="BorderBrush" Value="{StaticResource StandardGrey}"/>
+                                    <Setter Property="Background" Value="{StaticResource StandardGrey}"/>
+                                </Style>
+                                <Style
+                                    Selector="CheckBox.dialog-checkbox:indeterminate /template/ Border#NormalRectangle">
+                                    <Setter Property="BorderBrush" Value="{StaticResource StandardGrey}"/>
+                                    <Setter Property="Background" Value="{StaticResource StandardGrey}"/>
+                                </Style>
+                            </CheckBox.Styles>
+                        </CheckBox>
+                    </Grid>
+                </DockPanel>
+            </Panel>
+        </Border>
+    </Panel>
+</UserControl>

@@ -5,13 +5,30 @@
       <map>
         <entry key="Root-Way/App.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/CustomControls/BindablePasswordBox.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Resources/BaseResources.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Resources/DarkTheme.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Style/Button.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Styles/Button.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Styles/CalendarStyle.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Styles/ContextMenuStyle.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Styles/HomeWindowStyle.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Styles/MainStyle.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Styles/UIColors.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/AddPages/AddGradeWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/AddPages/AddSubjectWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/AddPages/AddYearWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/Dialogs/ConfirmationDialogView.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/HomeWindow.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/HomeWindow2.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/Lists/GradeListView.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/Lists/SubjectListView.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/Lists/YearListView.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/LoginWindow.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/MainWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/OsintWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/TargetGrade/AverageGradeView.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/TargetGrade/TargetGradeView.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/TargetGrade/TargetGradeWindow.axaml" value="Root-Way/Root-Way.csproj" />
       </map>
     </option>
   </component>
