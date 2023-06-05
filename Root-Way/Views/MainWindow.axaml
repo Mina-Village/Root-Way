@@ -54,14 +54,14 @@
                                 Height="35"
                                 Margin="30,25,0,40">
 
-                        <Image Source="/Assets/logo.png" Height="30"/>
+                        <Image Source="/Assets/logo.png" Height="60"/>
                         <TextBlock Text="ROOT WAY"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
                                    FontFamily="Montserrat"
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
-                                   Margin="10,0,0,0"/>
+                                   Margin="5,0,0,0"/>
                     </StackPanel>
 
                     <!--Styles/Triggers of Buttons on actions-->
@@ -87,8 +87,8 @@
                     <Button Classes="menuButton">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-gauge-high" 
-                                      Foreground="{StaticResource color1}"
-                                      FontSize="20"/>
+                                      Foreground="{StaticResource color1}"/>
+                                      <!--FontSize="20"-->
                             <TextBlock Classes="MenuButtonText" Text="Dashboard"/>
                         </StackPanel>
                     </Button>
