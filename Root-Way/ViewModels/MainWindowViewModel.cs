@@ -74,14 +74,14 @@ public class MainWindowViewModel : ViewModelBase
 
     private void ExecuteShowCustomerViewCommand(object obj)
     {
-        CurrentChildView = new OsintWindowViewModel();
+        //CurrentChildView = new OsintWindowViewModel();
         Caption = "OSINT";
         //Icon = IconChar.UserGroup;
     }
     private void ExecuteShowHomeViewCommand(object obj)
     {
         CurrentChildView = new HomeWindowViewModel();
-        Caption = "Dashboard";
+        Caption = "Home";
         //Icon = IconChar.Home;
     }
     
