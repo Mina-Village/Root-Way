@@ -45,7 +45,6 @@
       <Compile Remove="ViewModels\Lists\GradeListViewModel.cs" />
       <Compile Remove="Models\Elements\BaseClasses\ColorableElement.cs" />
       <Compile Remove="Models\Elements\Subject.cs" />
-      <Compile Remove="Views\OsintWindow.axaml.cs" />
       <Compile Remove="ExtensionCollection\FloatExtensions.cs" />
       <Compile Remove="ExtensionCollection\ColorExtensions.cs" />
       <Compile Remove="UtilityCollection\UniversalUtilities.cs" />

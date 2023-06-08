@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Root_Way.ViewModels"
+             xmlns:views="clr-namespace:Root_Way.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Root_Way.Views.EnumerationWindow"
+             x:DataType="viewModels:EnumerationWindowViewModel">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Encabezado -->
+        <DockPanel Grid.Row="0" Background="#333333">
+            <TextBlock Text="Enumeration Window" Foreground="White" FontSize="20"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </DockPanel>
+        
+        <!-- Target -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Target:" VerticalAlignment="Center"/>
+            <TextBox x:Name="TargetTextBox" Margin="10"/>
+        </StackPanel>
+        
+        <!-- Profile -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Profile:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="ProfileComboBox" Margin="10">
+                <ComboBoxItem Content="Intense scan"/>
+                <ComboBoxItem Content="Medium scan"/>
+                <!-- Agrega otros perfiles aquí -->
+            </ComboBox>
+        </StackPanel>
+        
+        <!-- Command -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Command:" VerticalAlignment="Center"/>
+            <TextBox x:Name="CommandTextBox" Margin="10"/>
+        </StackPanel>
+        
+        <!-- Scan button -->
+        <Button Grid.Row="4" Content="Scan" HorizontalAlignment="Center"
+                Command="{Binding ScanCommand}" Margin="10"/>
+        
+        <!-- Result -->
+        <TextBlock Grid.Row="5" Text="{Binding ScanResult}" Margin="10"/>
+    </Grid>
+</UserControl>

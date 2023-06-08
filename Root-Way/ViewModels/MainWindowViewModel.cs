@@ -59,22 +59,31 @@ public class MainWindowViewModel : ViewModelBase
     }*/
     //--> Commands
     public ICommand ShowHomeViewCommand { get; }
-    public ICommand ShowCustomerViewCommand { get; }
+    public ICommand ShowOsintViewCommand { get; }
+    public ICommand ShowEnumerationViewCommand { get; }
     public MainWindowViewModel()
     {
         //userRepository = new UserRepository();
         //CurrentUserAccount = new UserAccountModel();
         //Initialize commands
         ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
-        ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
+        ShowEnumerationViewCommand = new ViewModelCommand(ExecuteShowEnumertaionViewCommand);
+        ShowOsintViewCommand = new ViewModelCommand(ExecuteShowOsintViewCommand);
         //Default view
         //ExecuteShowHomeViewCommand(null);
         //LoadCurrentUserData();
     }
 
-    private void ExecuteShowCustomerViewCommand(object obj)
+    private void ExecuteShowEnumertaionViewCommand(object obj)
     {
-        //CurrentChildView = new OsintWindowViewModel();
+        CurrentChildView = new EnumerationWindowViewModel();
+        Caption = "Enumeration";
+        //Icon = IconChar.UserGroup;
+    }
+    
+    private void ExecuteShowOsintViewCommand(object obj)
+    {
+        CurrentChildView = new OsintWindowViewModel();
         Caption = "OSINT";
         //Icon = IconChar.UserGroup;
     }

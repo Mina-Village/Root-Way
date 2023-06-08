@@ -23,6 +23,12 @@
         <DataTemplate DataType="{x:Type vm:HomeWindowViewModel}">
                 <views:HomeWindow/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EnumerationWindowViewModel}">
+            <views:EnumerationWindow/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:OsintWindowViewModel}">
+            <views:OsintWindow/>
+        </DataTemplate>
     </Window.DataTemplates>
 
     <Window.Styles>
@@ -102,14 +108,14 @@
                             <TextBlock Classes="MenuButtonText" Text="Home" />
                         </StackPanel>
                     </Button>
-                    <Button Classes="menuButton" Command="{Binding ShowCustomerViewCommand}">
+                    <Button Classes="menuButton" Command="{Binding ShowOsintViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-user-secret"
                                       Foreground="{StaticResource color2}" />
                             <TextBlock Classes="MenuButtonText" Text="OSINT" />
                         </StackPanel>
                     </Button>
-                    <Button Classes="menuButton">
+                    <Button Classes="menuButton" Command="{Binding ShowEnumerationViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-arrow-down-1-9"
                                       Foreground="{StaticResource color3}" />
