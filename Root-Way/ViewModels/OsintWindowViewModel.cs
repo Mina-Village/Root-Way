@@ -28,13 +28,21 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
     public string Target
     {
         get => _target;
-        set => this.RaiseAndSetIfChanged(ref _target, value);
+        set
+        {
+            _target = value;
+            OnPropertyChanged(nameof(Target));
+        }
     }
 
     public string LootDir
     {
         get => _lootDir;
-        set => this.RaiseAndSetIfChanged(ref _lootDir, value);
+        set
+        {
+            _lootDir = value;
+            OnPropertyChanged(nameof(LootDir));
+        }
     }
 
     public string Output
@@ -51,8 +59,9 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
     {
         string target = Target;
         string lootDir = LootDir;
+        
         Output += "Starting OSINT scan for " + target + "\n";
-
+        
         // Gather WHOIS info
         Output += "Gathering WHOIS info...\n";
         ProcessStartInfo whoisInfo = new ProcessStartInfo("/usr/bin/whois", target);
@@ -61,36 +70,19 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
         Process whois = Process.Start(whoisInfo);
         string whoisOutput = whois.StandardOutput.ReadToEnd();
         whois.WaitForExit();
-        string whoisFilePath = Path.Combine(lootDir, "osint/whois-" + target + ".txt");
+        //string whoisFilePath = Path.Combine(lootDir, "osint/whois-" + target + ".txt");
+        string whoisFilePath = Path.Combine(lootDir, "osint", "whois-" + target + ".txt");
+        //create the directory if not exists
+        Directory.CreateDirectory(Path.GetDirectoryName(whoisFilePath));
         File.WriteAllText(whoisFilePath, whoisOutput);
         Output += "WHOIS info saved to " + whoisFilePath + "\n";
-    }
-
-    /*private void ScanButton_Click()
-    {
-        string target = Target;
-        string lootDir = LootDir;
-
-        Output += "Starting OSINT scan for " + target + "\n";*/
-
-         // Gather WHOIS info
-        /* Output += "Gathering WHOIS info...\n";
-        ProcessStartInfo whoisInfo = new ProcessStartInfo("whois", target);
-        whoisInfo.RedirectStandardOutput = true;
-        whoisInfo.UseShellExecute = false;
-        Process whois = Process.Start(whoisInfo);
-        string whoisOutput = whois.StandardOutput.ReadToEnd();
-        whois.WaitForExit();
-        string whoisFilePath = Path.Combine(lootDir, "osint/whois-" + target + ".txt");
-        File.WriteAllText(whoisFilePath, whoisOutput);
-        Output += "WHOIS info saved to " + whoisFilePath + "\n";*/
-
+        
         // Check email security
-        /*
         Output += "Checking for email security...\n";
         string iportDomainKey = "iport._domainkey." + target;
         string dmarc = "_dmarc." + target;
         string emailFilePath = Path.Combine(lootDir, "nmap/email-" + target + ".txt");
+        Directory.CreateDirectory(Path.GetDirectoryName(emailFilePath));
         using (StreamWriter writer = new StreamWriter(emailFilePath))
         {
             writer.WriteLine("SPF records:");
@@ -107,18 +99,24 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
             writer.WriteLine("-------------");
             RunDnsQuery(iportDomainKey, "txt", "dkim", writer);
         }
-        //Output += "Email security info saved to " + emailFilePath + "\n";
-
+        Output += "Email security info saved to " + emailFilePath + "\n";
+        
         // Gather UltraTools DNS info
-        Output += "Gathering UltraTools DNS info...\n";
+        /*Output += "Gathering UltraTools DNS info...\n";
         string ultraToolsUrl = "https://www.ultratools.com/tools/ipWhoisLookupResult?ipAddress=" +target;
         string ultraToolsFilePath = Path.Combine(lootDir, "osint/ultratools-" + target + ".html");
         using (WebClient client = new WebClient())
         {
             string ultraToolsOutput = client.DownloadString(ultraToolsUrl);
+            Directory.CreateDirectory(Path.GetDirectoryName(ultraToolsFilePath));
             File.WriteAllText(ultraToolsFilePath, ultraToolsOutput);
         }
-        Output += "UltraTools DNS info saved to " + ultraToolsFilePath + "\n";
+        Output += "UltraTools DNS info saved to " + ultraToolsFilePath + "\n";*/
+    }
+
+    /*private void ScanButton_Click()
+    {
+        
         // Gather Shodan info
         Output += "Gathering Shodan info...\n";
         string shodanApiKey = "YOUR_SHODAN_API_KEY_HERE";
@@ -149,7 +147,7 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
     private void RunDnsQuery(string domain, string type, string record, StreamWriter writer)
     {
         string dnsQuery = "nslookup -type=" + type + " " + domain;
-        ProcessStartInfo dnsQueryInfo = new ProcessStartInfo("/bin/bash", "/c " + dnsQuery);
+        ProcessStartInfo dnsQueryInfo = new ProcessStartInfo("/bin/bash", "-c " + dnsQuery);
         dnsQueryInfo.RedirectStandardOutput = true;
         dnsQueryInfo.UseShellExecute = false;
         Process dns = Process.Start(dnsQueryInfo);
