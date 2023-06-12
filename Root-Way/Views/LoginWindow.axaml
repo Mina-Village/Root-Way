@@ -30,16 +30,21 @@
         <Border BorderThickness="2"
                 Opacity="0.70">
             <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
-                    <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.75"/>
-                    <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
+            <LinearGradientBrush StartPoint="100%,100%" EndPoint="0%,0%">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0" Color="{StaticResource winBorderColor1}" />
+                    <GradientStop Offset="0.5" Color="{StaticResource winBorderColor2}" />
+                    <GradientStop Offset="1" Color="{StaticResource winBorderColor3}" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
             <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="#060531" Offset="0"/>
-                    <GradientStop Color="#1b1448" Offset="0.75"/>
+                <LinearGradientBrush StartPoint="100%,100%" EndPoint="0%,0%">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="{StaticResource winBorderColor1}" />
+                        <GradientStop Offset="0.5" Color="{StaticResource winBorderColor2}" />
+                        <GradientStop Offset="1" Color="{StaticResource winBorderColor3}" />
+                    </LinearGradientBrush.GradientStops>
                 </LinearGradientBrush>
             </Border.Background>
 

@@ -11,7 +11,11 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Root_Way"
         TransparencyLevelHint="Transparent"
-        Background="Transparent">
+        Background="Transparent"
+        CanResize="True"
+        HasSystemDecorations="True"
+        MinHeight="450"
+        MinWidth="800">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -38,7 +42,7 @@
         <Style Selector="Button:pointerover">
             <Setter Property="Margin" Value="0,0,0,5" />
             <Setter Property="Background" Value="{StaticResource color2}" />
-            <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
+            <Setter Property="Foreground" Value="{StaticResource color5}" />
             <Setter Property="BorderBrush"
                 Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
         </Style>
@@ -195,7 +199,7 @@
 
                             <TextBlock Text="{Binding Caption}"
                                        Foreground="{StaticResource titleColor2}"
-                                       FontSize="12"
+                                       FontSize="20"
                                        FontFamily="Montserrat"
                                        FontWeight="ExtraLight"
                                        VerticalAlignment="Center" />

@@ -9,48 +9,77 @@
              x:DataType="viewModels:EnumerationWindowViewModel">
     
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <!-- Encabezado -->
-        <DockPanel Grid.Row="0" Background="#333333">
-            <TextBlock Text="Enumeration Window" Foreground="White" FontSize="20"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </DockPanel>
-        
-        <!-- Target -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Target:" VerticalAlignment="Center"/>
-            <TextBox x:Name="TargetTextBox" Margin="10"/>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Crea 10 filas con CheckBoxes y TextBlocks -->
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">
+            <TextBlock Text="Information" Margin="5" Foreground="DeepPink" FontSize="16"/>
+            <TextBlock Text="Target" Margin="5"/>
+            <TextBox x:Name="TargetTextBox" Text="{Binding Target, Mode=TwoWay}" 
+                     Background="{StaticResource winBorderColor2}" Width="150" HorizontalAlignment="Left"/>
+            
+            <TextBlock Text="Loot Directory" Margin="5"/>
+            <TextBox x:Name="LootDirTextBox" Text="{Binding LootDir, Mode=TwoWay}" 
+                     Background="{StaticResource winBorderColor2}" Width="150" HorizontalAlignment="Left"/>
         </StackPanel>
-        
-        <!-- Profile -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Profile:" VerticalAlignment="Center"/>
-            <ComboBox x:Name="ProfileComboBox" Margin="10">
-                <ComboBoxItem Content="Intense scan"/>
-                <ComboBoxItem Content="Medium scan"/>
-                <!-- Agrega otros perfiles aquí -->
-            </ComboBox>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" >
+            <!-- CheckBox y TextBlock para la fila 0 -->
+            <TextBlock Text="Version Detection" Margin="5" Foreground="DeepPink" FontSize="16"/>
+            <CheckBox IsChecked="{Binding IsServiceDetectionSelected}" Content="Service detection" />
+            <CheckBox IsChecked="{Binding IsOsDetectionSelected}" Content="OS detection" />
+            <CheckBox IsChecked="{Binding IsAttemptOsGuessingSelected}" Content="Attempt Os guessing" />
+            <CheckBox IsChecked="{Binding IsVerboseModeSelected}" Content="Verbose mode"/>
+                
+                 
         </StackPanel>
-        
-        <!-- Command -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Command:" VerticalAlignment="Center"/>
-            <TextBox x:Name="CommandTextBox" Margin="10"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="4" Margin="10" >
+            <!-- CheckBox y TextBlock para la fila 0 -->
+            <TextBlock Text="Network and port scanning" Margin="5" Foreground="DeepPink" FontSize="16"/>
+            <TextBox x:Name="PortTextBox" Text="{Binding Port, Mode=TwoWay}" 
+                     Background="{StaticResource winBorderColor2}" Width="150" HorizontalAlignment="Left"/>
+            <!--<CheckBox IsChecked="{Binding IsServiceDetectionSelected}" Content="Service detection" />
+            <CheckBox IsChecked="{Binding IsOsDetectionSelected}" Content="OS detection" />
+            <CheckBox IsChecked="{Binding IsAttemptOsGuessingSelected}" Content="Attempt Os guessing" />
+            <CheckBox IsChecked="{Binding IsVerboseModeSelected}" Content="Verbose mode"/>-->
+                    
+          
         </StackPanel>
-        
-        <!-- Scan button -->
-        <Button Grid.Row="4" Content="Scan" HorizontalAlignment="Center"
-                Command="{Binding ScanCommand}" Margin="10"/>
-        
-        <!-- Result -->
-        <TextBlock Grid.Row="5" Text="{Binding ScanResult}" Margin="10"/>
+    
+    <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" >
+        <!-- CheckBox y TextBlock para la fila 0 -->
+        <Button Content="Scan" Command="{Binding ScanCommand1}" Margin="30" HorizontalContentAlignment="Center" HorizontalAlignment="Center" CornerRadius="10" Width="100" Height="30" Background="{StaticResource color2}" Foreground="Black" BorderBrush="{StaticResource color4}"/>
+        <TextBlock x:Name="Output" Text="{Binding Output, Mode=OneWay}"/>    
+    </StackPanel>
     </Grid>
+
+    
+    <!-- CheckBox y TextBlock para la fila 2 
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="ComboBox 2 Description" Padding="10"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" Width="200">
+            <ComboBoxItem Content="Opción 1" />
+            <ComboBoxItem Content="Opción 2" />
+            <ComboBoxItem Content="Opción 3" />
+        </ComboBox>-->
+
+    <!-- CheckBox y TextBlock para la fila 3 
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="ComboBox 3 Description" Padding="10"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Width="200">
+            <ComboBoxItem Content="Opción 1" />
+            <ComboBoxItem Content="Opción 2" />
+            <ComboBoxItem Content="Opción 3" />
+             </ComboBox>-->
 </UserControl>

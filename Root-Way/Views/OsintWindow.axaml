@@ -6,14 +6,29 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Root_Way.Views.OsintWindow"
              x:DataType="viewModels:OsintWindowViewModel">
+    
+    
+    <UserControl.Styles>
+        
+        <!--<Style Selector="TextBox.TargetTextBox:hover">
+            <Setter Property="Background" Value="{StaticResource color2}" />
+            <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+        </Style>
+        <Style Selector="TextBox.TargetTextBox:focus">
+            <Setter Property="Background" Value="Green" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+        </Style>-->
+    </UserControl.Styles>
 
     <StackPanel>
-        <TextBlock Text="Target:" />
-        <TextBox x:Name="TargetTextBox" Text="{Binding Target, Mode=TwoWay}"/>
-        <TextBlock Text="Loot Directory:" />
-        <TextBox x:Name="LootDirTextBox" Text="{Binding LootDir, Mode=TwoWay}"/>
+        <TextBlock Text="Target" Padding="20"/>
+        <TextBox x:Name="TargetTextBox" Text="{Binding Target, Mode=TwoWay}" Background="{StaticResource winBorderColor2}"/>
+        <TextBlock Text="Loot Directory" Padding="20"/>
+        <TextBox x:Name="LootDirTextBox" Text="{Binding LootDir, Mode=TwoWay}" Background="{StaticResource winBorderColor2}"/>
         
-        <Button Content="Scan" Command="{Binding ScanCommand1}"/>
+        <Button Content="Scan" Command="{Binding ScanCommand1}" Margin="30" HorizontalContentAlignment="Center" HorizontalAlignment="Center" CornerRadius="10" Width="100" Height="30" Background="{StaticResource color2}" Foreground="Black" BorderBrush="{StaticResource color4}"/>
         <TextBlock x:Name="Output" Text="{Binding Output, Mode=OneWay}"/>
     </StackPanel>
 

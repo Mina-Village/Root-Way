@@ -1,74 +1,178 @@
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls;
 using ReactiveUI;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Windows.Input;
 
 namespace Root_Way.ViewModels;
 
 public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
 {
+    private string _target;
+    private string? _port;
+    private string _lootDir;
+    private string _output;
+    private bool _isServiceDetectionSelected;
+    private bool _isOsDetectionSelected;
+    private bool _isAttemptOsGuessingSelected;
+    private bool _isVerboseModeSelected;
     
-    private TextBox _targetTextBox;
-    private TextBox _commandTextBox;
-    private TextBlock _scanResultTextBlock;
-    private string _scanResult;
     private ICommand _scanCommand;
     
+    public ICommand ScanCommand1 { get; }
+
     public EnumerationWindowViewModel()
     {
-        _scanCommand = ReactiveCommand.CreateFromTask(ExecuteScan);
+        //_scanCommand = ReactiveCommand.Create(ScanButton_Click);
+        ScanCommand1 = new ViewModelCommand(ExecuteScanCommand);
     }
 
-    public ICommand ScanCommand
+    public ICommand ScanCommand => _scanCommand;
+
+    public string Target
     {
-        get => _scanCommand;
-        set => this.RaiseAndSetIfChanged(ref _scanCommand, value);
-    }
-
-    public async Task ExecuteScan()
-    {
-        // Obtener los valores de los controles
-        string target = _targetTextBox.Text;
-        string command = _commandTextBox.Text;
-
-        // Ejecutar el escaneo en segundo plano
-        string result = await Task.Run(() => RunNmapScan(target, command));
-
-        // Mostrar los resultados en el bloque de texto
-        ScanResult = result;
-    }
-
-    private string RunNmapScan(string target, string command)
-    {
-        // Construir los argumentos para ejecutar Nmap
-        string nmapPath = "/bin/bash"; // Ruta al ejecutable de Nmap
-        string arguments = $"{target} {command}";
-
-        // Ejecutar el comando y obtener los resultados
-        Process process = new Process();
-        ProcessStartInfo startInfo = new ProcessStartInfo
+        get => _target;
+        set
         {
-            FileName = nmapPath,
-            Arguments = arguments,
-            RedirectStandardOutput = true,
-            UseShellExecute = false,
-            CreateNoWindow = true
-        };
-        process.StartInfo = startInfo;
-        process.Start();
-        string output = process.StandardOutput.ReadToEnd();
-        process.WaitForExit();
-
-        return output;
+            _target = value;
+            OnPropertyChanged(nameof(Target));
+        }
     }
 
-    public string ScanResult
+    public string LootDir
     {
-        get => _scanResult;
-        set => this.RaiseAndSetIfChanged(ref _scanResult, value);
+        get => _lootDir;
+        set
+        {
+            _lootDir = value;
+            OnPropertyChanged(nameof(LootDir));
+        }
     }
+
+    public string Output
+    {
+        get => _output;
+        set
+        {
+            _output = value;
+            OnPropertyChanged(nameof(Output));
+        }
+    }
+    
+    public string? Port
+    {
+        get => _port;
+        set
+        {
+            _port = value;
+            OnPropertyChanged(nameof(Port));
+        }
+    }
+    
+    //CHECK BOXES 
+    public bool IsServiceDetectionSelected
+    {
+        get => _isServiceDetectionSelected;
+        set
+        {
+            _isServiceDetectionSelected = value;
+            OnPropertyChanged(nameof(IsServiceDetectionSelected));
+        }
+    }
+    
+    public bool IsOsDetectionSelected
+    {
+        get => _isOsDetectionSelected;
+        set
+        {
+            _isOsDetectionSelected = value;
+            OnPropertyChanged(nameof(IsOsDetectionSelected));
+        }
+    }
+    
+    public bool IsAttemptOsGuessingSelected
+    {
+        get => _isAttemptOsGuessingSelected;
+        set
+        {
+            _isAttemptOsGuessingSelected = value;
+            OnPropertyChanged(nameof(IsAttemptOsGuessingSelected));
+        }
+    }
+    
+    public bool IsVerboseModeSelected
+    {
+        get => _isVerboseModeSelected;
+        set
+        {
+            _isVerboseModeSelected = value;
+            OnPropertyChanged(nameof(IsVerboseModeSelected));
+        }
+    }
+    
+    private void ExecuteScanCommand(object obj)
+    {
+        string target = Target;
+        string lootDir = LootDir;
+        string? port = Port;
+        string nmapArguments = "";
+
+        Output += "Starting NMAP scan for " + target + "\n";
+
+        // Verificar los argumentos seleccionados
+        if (IsServiceDetectionSelected)
+        {
+            nmapArguments += " -sS";
+        }
+        if (IsOsDetectionSelected)
+        {
+            nmapArguments += " -O";
+        }
+        if (IsAttemptOsGuessingSelected)
+        {
+            nmapArguments += " --osscan-guess";
+        }
+        if (IsVerboseModeSelected)
+        {
+            nmapArguments += " -v";
+        }
+        
+        if (!string.IsNullOrEmpty(Port))
+        {
+            nmapArguments += " -p " + Port + " " + target;
+        }
+        else
+        {
+            nmapArguments += " " + target;
+        }
+        
+
+        // Gather NMAP info
+        Output += "Gathering ports scan info...\n";
+        Console.WriteLine("/usr/bin/nmap" + nmapArguments);
+        //ProcessStartInfo nmapInfo = new ProcessStartInfo( "sudo", "/usr/bin/nmap " + nmapArguments);
+        ProcessStartInfo nmapInfo = new ProcessStartInfo( "/usr/bin/nmap" , nmapArguments);
+        nmapInfo.RedirectStandardOutput = true;
+        nmapInfo.UseShellExecute = false;
+        Process nmap = Process.Start(nmapInfo);
+        string nmapOutput = nmap.StandardOutput.ReadToEnd();
+        nmap.WaitForExit();
+        string nmapFilePath = Path.Combine(lootDir, "nmap", "nmap-" + target + ".txt");
+        // Create the directory if it doesn't exist
+        Directory.CreateDirectory(Path.GetDirectoryName(nmapFilePath));
+        File.WriteAllText(nmapFilePath, nmapOutput);
+        Output += "NMAP info saved to " + nmapFilePath + "\n";
+    }
+    
+    
+
 
     public event PropertyChangingEventHandler? PropertyChanging;
     public void RaisePropertyChanging(PropertyChangingEventArgs args)

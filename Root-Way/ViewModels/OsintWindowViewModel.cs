@@ -81,7 +81,7 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
         Output += "Checking for email security...\n";
         string iportDomainKey = "iport._domainkey." + target;
         string dmarc = "_dmarc." + target;
-        string emailFilePath = Path.Combine(lootDir, "nmap/email-" + target + ".txt");
+        string emailFilePath = Path.Combine(lootDir, "osint/email-" + target + ".txt");
         Directory.CreateDirectory(Path.GetDirectoryName(emailFilePath));
         using (StreamWriter writer = new StreamWriter(emailFilePath))
         {
@@ -102,8 +102,8 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
         Output += "Email security info saved to " + emailFilePath + "\n";
         
         // Gather UltraTools DNS info
-        /*Output += "Gathering UltraTools DNS info...\n";
-        string ultraToolsUrl = "https://www.ultratools.com/tools/ipWhoisLookupResult?ipAddress=" +target;
+        Output += "Gathering MxToolBox DNS info...\n";
+        string ultraToolsUrl = "https://mxtoolbox.com/SuperTool.aspx?action=mx%3a "+ target + "&run=toolpage" ;
         string ultraToolsFilePath = Path.Combine(lootDir, "osint/ultratools-" + target + ".html");
         using (WebClient client = new WebClient())
         {
@@ -111,7 +111,7 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
             Directory.CreateDirectory(Path.GetDirectoryName(ultraToolsFilePath));
             File.WriteAllText(ultraToolsFilePath, ultraToolsOutput);
         }
-        Output += "UltraTools DNS info saved to " + ultraToolsFilePath + "\n";*/
+        Output += "UltraTools DNS info saved to " + ultraToolsFilePath + "\n";
     }
 
     /*private void ScanButton_Click()
@@ -146,8 +146,8 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
 
     private void RunDnsQuery(string domain, string type, string record, StreamWriter writer)
     {
-        string dnsQuery = "nslookup -type=" + type + " " + domain;
-        ProcessStartInfo dnsQueryInfo = new ProcessStartInfo("/bin/bash", "-c " + dnsQuery);
+        string dnsQuery = "-type=" + type + " " + domain;
+        ProcessStartInfo dnsQueryInfo = new ProcessStartInfo("/usr/bin/nslookup", dnsQuery);
         dnsQueryInfo.RedirectStandardOutput = true;
         dnsQueryInfo.UseShellExecute = false;
         Process dns = Process.Start(dnsQueryInfo);
