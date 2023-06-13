@@ -15,6 +15,7 @@ public partial class MainWindow : Window
         DataContext = new HomeWindowViewModel();
         DataContext = new EnumerationWindowViewModel();
         DataContext = new OsintWindowViewModel();
+        DataContext = new ExploitationWindowViewModel();
        
     }
 }

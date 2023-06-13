@@ -33,6 +33,9 @@
         <DataTemplate DataType="{x:Type vm:OsintWindowViewModel}">
             <views:OsintWindow/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ExploitationWindowViewModel}">
+            <views:ExploitationWindow/>
+        </DataTemplate>
     </Window.DataTemplates>
 
     <Window.Styles>
@@ -126,7 +129,7 @@
                             <TextBlock Classes="MenuButtonText" Text="Enumeration" />
                         </StackPanel>
                     </Button>
-                    <Button Classes="menuButton">
+                    <Button Classes="menuButton" Command="{Binding ShowExploitationViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-spider"
                                       Foreground="{StaticResource color4}" />

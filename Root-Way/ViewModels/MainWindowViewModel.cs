@@ -61,6 +61,7 @@ public class MainWindowViewModel : ViewModelBase
     public ICommand ShowHomeViewCommand { get; }
     public ICommand ShowOsintViewCommand { get; }
     public ICommand ShowEnumerationViewCommand { get; }
+    public ICommand ShowExploitationViewCommand { get; }
     public MainWindowViewModel()
     {
         //userRepository = new UserRepository();
@@ -69,6 +70,7 @@ public class MainWindowViewModel : ViewModelBase
         ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
         ShowEnumerationViewCommand = new ViewModelCommand(ExecuteShowEnumertaionViewCommand);
         ShowOsintViewCommand = new ViewModelCommand(ExecuteShowOsintViewCommand);
+        ShowExploitationViewCommand = new ViewModelCommand(ExecuteShowExploitationViewCommand);
         //Default view
         //ExecuteShowHomeViewCommand(null);
         //LoadCurrentUserData();
@@ -91,6 +93,13 @@ public class MainWindowViewModel : ViewModelBase
     {
         CurrentChildView = new HomeWindowViewModel();
         Caption = "Home";
+        //Icon = IconChar.Home;
+    }
+    
+    private void ExecuteShowExploitationViewCommand(object obj)
+    {
+        CurrentChildView = new ExploitationWindowViewModel();
+        Caption = "Exploitation";
         //Icon = IconChar.Home;
     }
     
