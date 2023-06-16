@@ -1,3 +1,4 @@
+using BCrypt.Net;
 using System.Collections.Generic;
 using System.Net;
 using System.Security;
@@ -8,6 +9,11 @@ namespace Root_Way.Repositories;
 
 public class UserRepository : RepositoryBase, IUserRepository
 {
+    public string HashPassword(string password, string salt)
+    {
+        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+        return hashedPassword;
+    }
     public bool AuthenticateUser(NetworkCredential credential)
     {
         bool validUser;
