@@ -12,6 +12,7 @@ public partial class LoginWindow : Window
     {
        InitializeComponent();
        DataContext = new LoginWindowViewModel();
+       DataContext = new RegisterWindowViewModel();
     }
 
     private void btnLogin_Click(object sender, RoutedEventArgs e)

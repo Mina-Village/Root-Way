@@ -26,12 +26,30 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public void Add(UserModel userModel)
     {
-        //throw new System.NotImplementedException();
+        using (var connection = GetConnection())
+        using (var command = new MySqlCommand())
+        {
+            connection.Open();
+            command.Connection = connection;
+            command.CommandText = "INSERT INTO `User` (username, password) VALUES (@username, @password)";
+            command.Parameters.AddWithValue("@username", userModel.Username);
+            command.Parameters.AddWithValue("@password", userModel.Password);
+            command.ExecuteNonQuery();
+        }
     }
 
     public void Edit(UserModel userModel)
     {
-        //throw new System.NotImplementedException();
+        using (var connection = GetConnection())
+        using (var command = new MySqlCommand())
+        {
+            connection.Open();
+            command.Connection = connection;
+            command.CommandText = "UPDATE `User` SET password = @password WHERE username = @username";
+            command.Parameters.AddWithValue("@password", userModel.Password);
+            command.Parameters.AddWithValue("@username", userModel.Username);
+            command.ExecuteNonQuery();
+        }
     }
 
     public void Remove(int id)

@@ -72,11 +72,13 @@ public class LoginWindowViewModel : ViewModelBase
     }
 
     public ICommand LoginCommand { get; }
+    public ICommand RegisterCommand { get; }
 
     public LoginWindowViewModel()
     {
         userRepository = new UserRepository();
         LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+        RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand);
     }
 
     private bool CanExecuteLoginCommand(object obj)
@@ -103,5 +105,14 @@ public class LoginWindowViewModel : ViewModelBase
         {
             ErrorMessage = "* Invalid username or password";
         }
+    }
+    
+    private void ExecuteRegisterCommand(object obj)
+    {
+        var registerWindow = new RegisterWindow()
+        {
+            DataContext = new RegisterWindowViewModel()
+        };
+        registerWindow.Show();
     }
 }

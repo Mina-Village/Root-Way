@@ -13,11 +13,10 @@
         TransparencyLevelHint="Transparent"
         Background="Transparent"
         CanResize="True"
-        HasSystemDecorations="True"
         MinHeight="600"
         MinWidth="1300">
 
-    <Design.DataContext>
+<Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)-->
         <vm:MainWindowViewModel />
@@ -262,10 +261,11 @@
                         </StackPanel>
                     </Grid>
 
-                    <!--Content section / Child views-->
+                    <!-- Content section / Child views -->
                     <ContentControl Content="{Binding CurrentChildView}"
                                     Grid.Row="2"
-                                    Margin="25" />
+                                    Margin="25">
+                    </ContentControl>
                 </Grid>
             </Border>
         </Grid>

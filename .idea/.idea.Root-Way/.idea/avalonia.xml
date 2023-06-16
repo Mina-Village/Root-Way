@@ -15,6 +15,7 @@
         <entry key="Root-Way/Views/LoginWindow.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/MainWindow.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/OsintWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/RegisterWindow.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/a.axaml" value="Root-Way/Root-Way.csproj" />
       </map>
     </option>
