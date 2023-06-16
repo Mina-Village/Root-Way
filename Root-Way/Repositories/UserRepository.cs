@@ -1,7 +1,9 @@
+using System;
 using BCrypt.Net;
 using System.Collections.Generic;
 using System.Net;
 using System.Security;
+using System.Text;
 using Root_Way.Models;
 using MySql.Data.MySqlClient;
 
@@ -9,6 +11,12 @@ namespace Root_Way.Repositories;
 
 public class UserRepository : RepositoryBase, IUserRepository
 {
+    public string GenerateSalt()
+    {
+        Console.WriteLine(BCrypt.Net.BCrypt.GenerateSalt());
+        return BCrypt.Net.BCrypt.GenerateSalt();
+    }
+
     public string HashPassword(string password, string salt)
     {
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
@@ -16,15 +24,22 @@ public class UserRepository : RepositoryBase, IUserRepository
     }
     public bool AuthenticateUser(NetworkCredential credential)
     {
+        string salt = GetSaltByUsername(credential.UserName);
+        if (string.IsNullOrEmpty(salt))
+        {
+            return false;
+        }
+        string hashedPassword = HashPassword(credential.Password, salt);
+        
         bool validUser;
         using (var connection = GetConnection())
         using (var command = new MySqlCommand())
         {
             connection.Open();
             command.Connection = connection;
-            command.CommandText = "select *from `User` where username=@username and password=@password";
+            command.CommandText = "select * from `User` where username=@username and password=@password";
             command.Parameters.Add("@username", MySqlDbType.VarChar).Value = credential.UserName;
-            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = credential.Password;
+            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = hashedPassword;
             validUser = command.ExecuteScalar() != null;
         }
         return validUser;
@@ -32,27 +47,33 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public void Add(UserModel userModel)
     {
+        string salt = GenerateSalt();
+        string hashedPassword = HashPassword(userModel.Password, salt);
         using (var connection = GetConnection())
         using (var command = new MySqlCommand())
         {
             connection.Open();
             command.Connection = connection;
-            command.CommandText = "INSERT INTO `User` (username, password) VALUES (@username, @password)";
+            command.CommandText = "INSERT INTO `User` (username, password, salt) VALUES (@username, @password, @salt)";
             command.Parameters.AddWithValue("@username", userModel.Username);
-            command.Parameters.AddWithValue("@password", userModel.Password);
+            command.Parameters.AddWithValue("@password", hashedPassword);
+            command.Parameters.AddWithValue("@salt", salt);
             command.ExecuteNonQuery();
         }
     }
 
     public void Edit(UserModel userModel)
     {
+        string salt = GenerateSalt();
+        string hashedPassword = HashPassword(userModel.Password, salt);
         using (var connection = GetConnection())
         using (var command = new MySqlCommand())
         {
             connection.Open();
             command.Connection = connection;
-            command.CommandText = "UPDATE `User` SET password = @password WHERE username = @username";
-            command.Parameters.AddWithValue("@password", userModel.Password);
+            command.CommandText = "UPDATE `User` SET password = @password, salt = @salt WHERE username = @username";
+            command.Parameters.AddWithValue("@password", hashedPassword);
+            command.Parameters.AddWithValue("@salt", salt);
             command.Parameters.AddWithValue("@username", userModel.Username);
             command.ExecuteNonQuery();
         }
@@ -60,7 +81,7 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public void Remove(int id)
     {
-        //throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
     }
 
     public UserModel GetById(int id)
@@ -76,7 +97,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         {
             connection.Open();
             command.Connection = connection;
-            command.CommandText = "select * from `User` where username=@username";
+            command.CommandText = "select Id, Username from `User` where username=@username";
             command.Parameters.Add("@username", MySqlDbType.VarChar).Value = username;
             using (var reader = command.ExecuteReader())
             {
@@ -92,6 +113,32 @@ public class UserRepository : RepositoryBase, IUserRepository
             }
         }
         return user;
+    }
+    
+    public string GetSaltByUsername(string username)
+    {
+        if (GetByUsername(username) == null)
+        {
+            return null;
+        }
+        
+        using (var connection = GetConnection())
+        using (var command = new MySqlCommand())
+        {
+            connection.Open();
+            command.Connection = connection;
+            command.CommandText = "select Salt from `User` where username=@username";
+            command.Parameters.Add("@username", MySqlDbType.VarChar).Value = username;
+            using (var reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    return (reader[0] as string);
+                }
+            }
+        }
+
+        return null;
     }
 
     public IEnumerable<UserModel> GetByAll()
