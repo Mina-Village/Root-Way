@@ -234,9 +234,7 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
         string lootDir = LootDir;
         string? port = Port;
         string nmapArguments = "";
-        
-        Console.WriteLine(Test.Content.ToString());
-        
+
         if (string.IsNullOrEmpty(Target) || string.IsNullOrEmpty(LootDir) )
         {
             Output += "ERROR, Target or Loot directory missing";
@@ -294,7 +292,6 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
 
         // Gather NMAP info
         Output += "Gathering ports scan info...\n";
-        Console.WriteLine("/usr/bin/nmap" + nmapArguments);
         //ProcessStartInfo nmapInfo = new ProcessStartInfo( "sudo", "/usr/bin/nmap " + nmapArguments);
         ProcessStartInfo nmapInfo = new ProcessStartInfo( "/usr/bin/nmap" , nmapArguments);
         nmapInfo.RedirectStandardOutput = true;

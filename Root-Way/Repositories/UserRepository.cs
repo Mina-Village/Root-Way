@@ -13,7 +13,6 @@ public class UserRepository : RepositoryBase, IUserRepository
 {
     public string GenerateSalt()
     {
-        Console.WriteLine(BCrypt.Net.BCrypt.GenerateSalt());
         return BCrypt.Net.BCrypt.GenerateSalt();
     }
 
