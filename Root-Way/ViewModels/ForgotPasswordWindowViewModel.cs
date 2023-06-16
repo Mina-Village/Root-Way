@@ -7,12 +7,12 @@ using Root_Way.Repositories;
 
 namespace Root_Way.ViewModels;
 
-public class RegisterWindowViewModel : ViewModelBase
+public class ForgotPasswordWindowViewModel : ViewModelBase
 {
     private string _username;
     private string _password;
     private readonly IUserRepository _userRepository;
-    private Window _registerWindow;
+    private Window _forgotPasswordWindow;
 
     public string Username
     {
@@ -34,24 +34,24 @@ public class RegisterWindowViewModel : ViewModelBase
         }
     }
 
-    public ICommand RegisterCommand { get; }
+    public ICommand ForgotPasswordCommand { get; }
 
-    public RegisterWindowViewModel(Window w)
+    public ForgotPasswordWindowViewModel(Window w)
     {
-        _registerWindow = w;
+        _forgotPasswordWindow = w;
         _userRepository = new UserRepository();
 
-        RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand);
+        ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordWindowCommand);
     }
 
-    private void ExecuteRegisterCommand(object obj)
+    private void ExecuteForgotPasswordWindowCommand(object obj)
     {
         if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
         {
             var emptyError = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(
                 new MessageBoxStandardParams
                 {
-                    ContentTitle = "Register Information",
+                    ContentTitle = "Information",
                     //ContentHeader = header,
                     ContentMessage = "ERROR! Username or password is empty!\n",
                     CanResize = false,
@@ -67,14 +67,14 @@ public class RegisterWindowViewModel : ViewModelBase
             return;
         }
 
-        if (_userRepository.GetByUsername(Username) != null)
+        if (_userRepository.GetByUsername(Username) == null)
         {
             var errorUserAlredyExists = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(
                 new MessageBoxStandardParams
                 {
-                    ContentTitle = "Register Information",
+                    ContentTitle = "Information",
                     //ContentHeader = header,
-                    ContentMessage = "ERROR! Username alredy exists!\n",
+                    ContentMessage = "ERROR! Username not exists!\n",
                     CanResize = false,
                     MaxWidth = 500,
                     MaxHeight = 100,
@@ -88,22 +88,22 @@ public class RegisterWindowViewModel : ViewModelBase
             return;
         }
         
-        // Aquí puedes implementar la lógica para registrar al usuario en tu repositorio
+        //password recovery
         UserModel userModel = new UserModel
         {
             Username = Username,
             Password = Password
         };
 
-        _userRepository.Add(userModel);
+        _userRepository.Edit(userModel);
 
         // Mostrar un mensaje de registro exitoso
         var successfulMessage = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(
             new MessageBoxStandardParams
             {
-                ContentTitle = "Register Information",
+                ContentTitle = "Information",
                 //ContentHeader = header,
-                ContentMessage = "Registration successful!\n",
+                ContentMessage = "Password successful changed!\n",
                 CanResize = false,
                 MaxWidth = 500,
                 MaxHeight = 100,
@@ -117,6 +117,6 @@ public class RegisterWindowViewModel : ViewModelBase
         
         
         // Cerrar la ventana de registro
-        _registerWindow.Close();
+        _forgotPasswordWindow.Close();
     }
 }

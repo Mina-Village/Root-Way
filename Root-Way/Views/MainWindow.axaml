@@ -12,9 +12,7 @@
         Title="Root_Way"
         TransparencyLevelHint="Transparent"
         Background="Transparent"
-        CanResize="True"
-        MinHeight="600"
-        MinWidth="1300">
+        CanResize="False">
 
 <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,

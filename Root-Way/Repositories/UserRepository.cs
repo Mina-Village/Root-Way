@@ -70,7 +70,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         {
             connection.Open();
             command.Connection = connection;
-            command.CommandText = "select * from `User` where username=@username and `password`=@password";
+            command.CommandText = "select * from `User` where username=@username";
             command.Parameters.Add("@username", MySqlDbType.VarChar).Value = username;
             using (var reader = command.ExecuteReader())
             {
@@ -81,9 +81,6 @@ public class UserRepository : RepositoryBase, IUserRepository
                         Id = reader[0].ToString(),
                         Username = reader[1].ToString(),
                         Password = string.Empty,
-                        Name = reader[3].ToString(),
-                        LastName = reader[4].ToString(),
-                        Email = reader[5].ToString(),
                     };
                 }
             }

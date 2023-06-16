@@ -5,12 +5,12 @@ using Root_Way.ViewModels;
 
 namespace Root_Way.Views;
 
-public partial class RegisterWindow : Window
+public partial class ForgotPasswordWindow : Window
 {
-    public RegisterWindow()
+    public ForgotPasswordWindow()
     {
         InitializeComponent();
-        DataContext = new RegisterWindowViewModel(this);
+        DataContext = new ForgotPasswordWindowViewModel(this);
 #if DEBUG
         this.AttachDevTools();
 #endif

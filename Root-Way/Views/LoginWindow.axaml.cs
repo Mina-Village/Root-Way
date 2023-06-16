@@ -10,12 +10,16 @@ public partial class LoginWindow : Window
 {
     public LoginWindow()
     {
-       InitializeComponent();
-       DataContext = new LoginWindowViewModel();
-       DataContext = new RegisterWindowViewModel();
+        InitializeComponent();
+        DataContext = new LoginWindowViewModel(this);
     }
 
     private void btnLogin_Click(object sender, RoutedEventArgs e)
     {
+    }
+    
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
     }
 }
