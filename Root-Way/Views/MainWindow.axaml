@@ -14,7 +14,7 @@
         Background="Transparent"
         CanResize="False">
 
-<Design.DataContext>
+    <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)-->
         <vm:MainWindowViewModel />
@@ -210,7 +210,7 @@
                                     Orientation="Horizontal"
                                     VerticalAlignment="Center"
                                     Margin="30,0,10,0">
-                            <Button Classes="menuButton"
+                            <Button Classes="menuButton" Command="{Binding ForgotPasswordCommand}"
                                     Width="28"
                                     Height="30">
                                 <StackPanel Orientation="Horizontal">
@@ -251,7 +251,7 @@
                                     <ImageBrush Source="/Assets/logo.png" />
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <TextBlock Text="Username"
+                            <TextBlock Text="{Binding CurrentUserAccount}"
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
                                        FontSize="12"
