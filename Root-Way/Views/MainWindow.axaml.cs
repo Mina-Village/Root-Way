@@ -12,10 +12,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new HomeWindowViewModel();
-        DataContext = new EnumerationWindowViewModel();
-        DataContext = new OsintWindowViewModel();
-        DataContext = new ExploitationWindowViewModel();
-       
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 using Avalonia.Controls;
 using MessageBox.Avalonia.DTO;
@@ -9,18 +10,21 @@ namespace Root_Way.ViewModels;
 
 public class ForgotPasswordWindowViewModel : ViewModelBase
 {
-    private string _username;
     private string _password;
     private readonly IUserRepository _userRepository;
     private Window _forgotPasswordWindow;
-
-    public string Username
+    private string _currentUserAccount;
+    
+    public string CurrentUserAccount
     {
-        get { return _username; }
+        get
+        {
+            return _currentUserAccount;
+        }
         set
         {
-            _username = value;
-            OnPropertyChanged(nameof(Username));
+            _currentUserAccount = value;
+            OnPropertyChanged(nameof(CurrentUserAccount));
         }
     }
 
@@ -36,17 +40,20 @@ public class ForgotPasswordWindowViewModel : ViewModelBase
 
     public ICommand ForgotPasswordCommand { get; }
 
-    public ForgotPasswordWindowViewModel(Window w)
+    public ForgotPasswordWindowViewModel(Window w, string Username)
     {
+        Console.Write(Username + w.ToString());
+        CurrentUserAccount = Username;
         _forgotPasswordWindow = w;
         _userRepository = new UserRepository();
 
         ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordWindowCommand);
     }
 
+
     private void ExecuteForgotPasswordWindowCommand(object obj)
     {
-        if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+        if (string.IsNullOrEmpty(CurrentUserAccount) || string.IsNullOrEmpty(Password))
         {
             var emptyError = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(
                 new MessageBoxStandardParams
@@ -67,7 +74,7 @@ public class ForgotPasswordWindowViewModel : ViewModelBase
             return;
         }
 
-        if (_userRepository.GetByUsername(Username) == null)
+        if (_userRepository.GetByUsername(CurrentUserAccount) == null)
         {
             var errorUserAlredyExists = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(
                 new MessageBoxStandardParams
@@ -91,7 +98,7 @@ public class ForgotPasswordWindowViewModel : ViewModelBase
         //password recovery
         UserModel userModel = new UserModel
         {
-            Username = Username,
+            Username = CurrentUserAccount,
             Password = Password
         };
 

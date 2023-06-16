@@ -74,7 +74,7 @@ public class LoginWindowViewModel : ViewModelBase
         userRepository = new UserRepository();
         LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand);
-        ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordCommand);
+        //ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordCommand);
     }
 
     private bool CanExecuteLoginCommand(object obj)
@@ -88,7 +88,7 @@ public class LoginWindowViewModel : ViewModelBase
         if (isValidUser)
         {
             var mainWindow = new MainWindow()  {
-                DataContext = new MainWindowViewModel(),
+                DataContext = new MainWindowViewModel(Username),
             };
             mainWindow.Show();
             _loginWindow.Close();
@@ -107,10 +107,5 @@ public class LoginWindowViewModel : ViewModelBase
     {
         var registerWindow = new RegisterWindow();
         registerWindow.Show();
-    }
-    private void ExecuteForgotPasswordCommand(object obj)
-    {
-        var forgotPasswordWindow = new ForgotPasswordWindow();
-        forgotPasswordWindow.Show();
     }
 }
