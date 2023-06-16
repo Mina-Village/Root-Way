@@ -8,8 +8,16 @@
         <entry key="Root-Way/Style/Button.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Styles/Button.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Styles/UIColors.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/EnumerationWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/ExploitationWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/ForgotPasswordWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/HomeWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/HomeWindow2.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/LoginWindow.axaml" value="Root-Way/Root-Way.csproj" />
         <entry key="Root-Way/Views/MainWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/OsintWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/RegisterWindow.axaml" value="Root-Way/Root-Way.csproj" />
+        <entry key="Root-Way/Views/a.axaml" value="Root-Way/Root-Way.csproj" />
       </map>
     </option>
   </component>

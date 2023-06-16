@@ -1,23 +1,18 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Root_Way.ViewModels;
 
 namespace Root_Way.Views;
 
-public partial class LoginWindow : Window
+public partial class HomeWindow : UserControl
 {
-    public LoginWindow()
+    public HomeWindow()
     {
         InitializeComponent();
-        DataContext = new LoginWindowViewModel(this);
+        DataContext = new HomeWindowViewModel();
     }
 
-    private void btnLogin_Click(object sender, RoutedEventArgs e)
-    {
-    }
-    
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);

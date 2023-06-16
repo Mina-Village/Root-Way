@@ -26,12 +26,30 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public void Add(UserModel userModel)
     {
-        //throw new System.NotImplementedException();
+        using (var connection = GetConnection())
+        using (var command = new MySqlCommand())
+        {
+            connection.Open();
+            command.Connection = connection;
+            command.CommandText = "INSERT INTO `User` (username, password) VALUES (@username, @password)";
+            command.Parameters.AddWithValue("@username", userModel.Username);
+            command.Parameters.AddWithValue("@password", userModel.Password);
+            command.ExecuteNonQuery();
+        }
     }
 
     public void Edit(UserModel userModel)
     {
-        //throw new System.NotImplementedException();
+        using (var connection = GetConnection())
+        using (var command = new MySqlCommand())
+        {
+            connection.Open();
+            command.Connection = connection;
+            command.CommandText = "UPDATE `User` SET password = @password WHERE username = @username";
+            command.Parameters.AddWithValue("@password", userModel.Password);
+            command.Parameters.AddWithValue("@username", userModel.Username);
+            command.ExecuteNonQuery();
+        }
     }
 
     public void Remove(int id)
@@ -52,7 +70,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         {
             connection.Open();
             command.Connection = connection;
-            command.CommandText = "select * from `User` where username=@username and `password`=@password";
+            command.CommandText = "select * from `User` where username=@username";
             command.Parameters.Add("@username", MySqlDbType.VarChar).Value = username;
             using (var reader = command.ExecuteReader())
             {
@@ -63,9 +81,6 @@ public class UserRepository : RepositoryBase, IUserRepository
                         Id = reader[0].ToString(),
                         Username = reader[1].ToString(),
                         Password = string.Empty,
-                        Name = reader[3].ToString(),
-                        LastName = reader[4].ToString(),
-                        Email = reader[5].ToString(),
                     };
                 }
             }
