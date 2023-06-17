@@ -1,3 +1,4 @@
+using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using Avalonia.Controls;
 using Avalonia.Input;
