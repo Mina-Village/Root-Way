@@ -9,9 +9,16 @@ namespace Root_Way.Views;
 
 public partial class MainWindow : Window
 {
+    public MainWindow(string username)
+    {
+        InitializeComponent();
+        DataContext = new MainWindowViewModel(this, username);
+
+    }
     public MainWindow()
     {
         InitializeComponent();
+        DataContext = new MainWindowViewModel(this, "username");
 
     }
 }
