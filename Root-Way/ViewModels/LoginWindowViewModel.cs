@@ -87,9 +87,7 @@ public class LoginWindowViewModel : ViewModelBase
         var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
         if (isValidUser)
         {
-            var mainWindow = new MainWindow()  {
-                DataContext = new MainWindowViewModel(Username),
-            };
+            var mainWindow = new MainWindow(Username);
             mainWindow.Show();
             _loginWindow.Close();
 

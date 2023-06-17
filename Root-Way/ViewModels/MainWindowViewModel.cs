@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Avalonia.Controls;
 using ReactiveUI;
 using Root_Way.Models;
 using Root_Way.Repositories;
@@ -11,9 +12,11 @@ public class MainWindowViewModel : ViewModelBase
     //Fields
     private string _currentUserAccount;
     private ViewModelBase _currentChildView;
+    private ViewModelBase _closeUserSession;
     private string _caption;
     //private IconChar _icon;
     private IUserRepository userRepository;
+    private Window _mainWindow;
 
     //Properties
     public string CurrentUserAccount
@@ -26,6 +29,19 @@ public class MainWindowViewModel : ViewModelBase
         {
             _currentUserAccount = value;
             OnPropertyChanged(nameof(CurrentUserAccount));
+        }
+    }
+    
+    public ViewModelBase CloseUserSession
+    {
+        get
+        {
+            return _closeUserSession;
+        }
+        set
+        {
+            _closeUserSession = value;
+            OnPropertyChanged(nameof(CloseSessionCommand));
         }
     }
     public ViewModelBase CurrentChildView
@@ -65,11 +81,13 @@ public class MainWindowViewModel : ViewModelBase
     public ICommand ShowEnumerationViewCommand { get; }
     public ICommand ShowExploitationViewCommand { get; }
     public ICommand ForgotPasswordCommand { get; }
+    public ICommand CloseSessionCommand { get; }
     
-    public MainWindowViewModel(string Username)
+    public MainWindowViewModel(Window w, string Username)
     {
         userRepository = new UserRepository();
         CurrentUserAccount = Username;
+        _mainWindow = w;
 
         //Initialize commands
         ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
@@ -77,6 +95,8 @@ public class MainWindowViewModel : ViewModelBase
         ShowOsintViewCommand = new ViewModelCommand(ExecuteShowOsintViewCommand);
         ShowExploitationViewCommand = new ViewModelCommand(ExecuteShowExploitationViewCommand);
         ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordCommand);
+        CloseSessionCommand = new ViewModelCommand(ExecuteCloseSessionCommand);
+        
         //Default view
         //ExecuteShowHomeViewCommand(null);
         //LoadCurrentUserData();
@@ -113,6 +133,13 @@ public class MainWindowViewModel : ViewModelBase
     {
         CurrentChildView = new ExploitationWindowViewModel();
         Caption = "Exploitation";
+        //Icon = IconChar.Home;
+    }
+    private void ExecuteCloseSessionCommand(object obj)
+    {
+        var loginWindow = new LoginWindow();
+        loginWindow.Show();
+        _mainWindow.Close();
         //Icon = IconChar.Home;
     }
     
