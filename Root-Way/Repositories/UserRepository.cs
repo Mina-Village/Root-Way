@@ -31,7 +31,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         string hashedPassword = HashPassword(credential.Password, salt);
         
         bool validUser;
-        using (var connection = GetConnection())
+        using (var connection = GetConnectionDB())
         using (var command = new MySqlCommand())
         {
             connection.Open();
@@ -48,7 +48,7 @@ public class UserRepository : RepositoryBase, IUserRepository
     {
         string salt = GenerateSalt();
         string hashedPassword = HashPassword(userModel.Password, salt);
-        using (var connection = GetConnection())
+        using (var connection = GetConnectionDB())
         using (var command = new MySqlCommand())
         {
             connection.Open();
@@ -65,7 +65,7 @@ public class UserRepository : RepositoryBase, IUserRepository
     {
         string salt = GenerateSalt();
         string hashedPassword = HashPassword(userModel.Password, salt);
-        using (var connection = GetConnection())
+        using (var connection = GetConnectionDB())
         using (var command = new MySqlCommand())
         {
             connection.Open();
@@ -91,7 +91,7 @@ public class UserRepository : RepositoryBase, IUserRepository
     public UserModel GetByUsername(string username)
     {
         UserModel? user = null; 
-        using (var connection = GetConnection())
+        using (var connection = GetConnectionDB())
         using (var command = new MySqlCommand())
         {
             connection.Open();
@@ -121,7 +121,7 @@ public class UserRepository : RepositoryBase, IUserRepository
             return null;
         }
         
-        using (var connection = GetConnection())
+        using (var connection = GetConnectionDB())
         using (var command = new MySqlCommand())
         {
             connection.Open();

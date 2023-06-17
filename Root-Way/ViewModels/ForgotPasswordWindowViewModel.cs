@@ -42,7 +42,6 @@ public class ForgotPasswordWindowViewModel : ViewModelBase
 
     public ForgotPasswordWindowViewModel(Window w, string Username)
     {
-        Console.Write(Username + w.ToString());
         CurrentUserAccount = Username;
         _forgotPasswordWindow = w;
         _userRepository = new UserRepository();
