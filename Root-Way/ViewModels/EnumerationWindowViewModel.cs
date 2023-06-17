@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows.Input;
+using Avalonia;
 
 namespace Root_Way.ViewModels;
 
@@ -304,6 +305,7 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
         Directory.CreateDirectory(Path.GetDirectoryName(nmapFilePath));
         File.WriteAllText(nmapFilePath, nmapOutput);
         Output += "NMAP info saved to " + nmapFilePath + "\n";
+        Console.WriteLine();
     }
     
     public event PropertyChangingEventHandler? PropertyChanging;
