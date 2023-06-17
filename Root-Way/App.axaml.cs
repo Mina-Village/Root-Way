@@ -1,7 +1,11 @@
+using System;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.Configuration;
+using Root_Way.Repositories;
 using Root_Way.ViewModels;
 using Root_Way.Views;
 
