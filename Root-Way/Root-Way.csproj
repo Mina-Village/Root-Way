@@ -24,6 +24,7 @@
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.19" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.19" />
         <PackageReference Include="Avalonia.ReactiveUI.Events" Version="0.10.19" />
+        <PackageReference Include="Azure.Storage.Blobs" Version="12.16.0" />
         <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
         <PackageReference Include="MessageBox.Avalonia" Version="2.1.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
