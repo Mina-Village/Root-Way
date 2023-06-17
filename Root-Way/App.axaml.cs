@@ -1,10 +1,12 @@
 using System;
 using System.IO;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.Configuration;
+using Root_Way.Models;
 using Root_Way.Repositories;
 using Root_Way.ViewModels;
 using Root_Way.Views;
@@ -23,8 +25,16 @@ public class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new LoginWindow();
-           
-           
+
+            StorageRepository storage = new StorageRepository();
+
+            foreach (FileModel file in storage.GetAllScripts("mina"))
+            {
+                Console.WriteLine(file.Name + " " + file.FileType);
+            }
+
+            Console.WriteLine(storage.DownloadFile("hello.txt", "mina"));
+
             /*var loginWindow = new LoginWindow();
             loginWindow.Show();
             loginWindow.Closed += (sender, e) =>

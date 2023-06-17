@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Mysqlx.Datatypes;
 using ReactiveUI;
 using Root_Way.Models;
 
@@ -24,7 +26,7 @@ public class StorageRepository : RepositoryBase
 
     public IEnumerable<String> GetScriptLocalList()
     {
-        return Directory.EnumerateFiles(AppConfiguration.GetValue("scriptsDir"));
+        return Directory.EnumerateFiles(AppConfiguration.GetValue("scriptsDir")).Select(file => file.Split("/").Last());
     }
 
     public IEnumerable<FileModel> GetAllScripts(string username)
@@ -32,26 +34,25 @@ public class StorageRepository : RepositoryBase
         IEnumerable<FileModel> cloudScripts = GetScriptCloudList(username).Select(file => new FileModel(){Name = file, FileType = FileType.Cloud});
         IEnumerable<FileModel> localScripts = GetScriptLocalList().Select(file => new FileModel(){Name = file, FileType = FileType.Local});
         
-        IEnumerable<FileModel> mergedScripts = cloudScripts.Union(localScripts);
-
-        foreach (FileModel file in mergedScripts)
-        {
-            if (file.FileType == FileType.Cloud && localScripts.Any(f => f.Name == file.Name))
+        IEnumerable<FileModel> mergedScripts = cloudScripts.Concat(localScripts);
+        
+        return mergedScripts.GroupBy(file => file.Name)
+            .Select(group =>
             {
-                file.FileType = FileType.Both;
-            }
-            else if (file.FileType == FileType.Local && cloudScripts.Any(f => f.Name == file.Name))
-            {
-                file.FileType = FileType.Both;
-            }
-        }
-
-        return mergedScripts;
+                FileType newFileType = group.Count() > 1 ? FileType.Both : group.First().FileType;
+                return new FileModel { Name = group.Key, FileType = newFileType };
+            });;
     }
     
     public bool CheckLocalFile(string name)
     {
         return File.Exists(AppConfiguration.GetValue("scriptsDir") + name);
+    }
+    
+    public bool CheckCloudFile(string name, string username)
+    {
+        BlobContainerClient userContainer = CheckAndCreateContainer(username);
+        return userContainer.GetBlobClient(name).Exists();
     }
 
     public BlobContainerClient CheckAndCreateContainer(string username)
@@ -68,6 +69,11 @@ public class StorageRepository : RepositoryBase
 
     public bool DeleteFileFromCloud(string name, string username)
     {
+        if (!CheckCloudFile(name, username))
+        {
+            return false;
+        }
+        
         try
         {
             BlobContainerClient userContainer = CheckAndCreateContainer(username);
@@ -83,6 +89,11 @@ public class StorageRepository : RepositoryBase
     
     public bool DeleteFileFromLocal(string name)
     {
+        if (!CheckLocalFile(name))
+        {
+            return false;
+        }
+        
         try
         {
             File.Delete(AppConfiguration.GetValue("scriptsDir") + name);;
@@ -122,7 +133,7 @@ public class StorageRepository : RepositoryBase
     
     public bool DownloadFile(string name, string username)
     {
-        if (!CheckLocalFile(name))
+        if (!CheckCloudFile(name, username))
         {
             return false;
         }
@@ -131,11 +142,16 @@ public class StorageRepository : RepositoryBase
         
         try
         {
-            userContainer.GetBlobClient(name).Upload(AppConfiguration.GetValue("scriptsDir") + name, true);
+            DeleteFileFromLocal(name);
+            
+            using (FileStream writeStream = File.Create(AppConfiguration.GetValue("scriptsDir") + name))
+            {
+                userContainer.GetBlobClient(name).DownloadTo(writeStream);
+            }
         }
         catch (Exception e)
         {
-            
+            Console.WriteLine(e.ToString());
             return false;
         }
 
