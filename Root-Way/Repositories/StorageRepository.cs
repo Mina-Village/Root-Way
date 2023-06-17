@@ -24,7 +24,7 @@ public class StorageRepository : RepositoryBase
 
     public IEnumerable<String> GetScriptLocalList()
     {
-        return Directory.EnumerateFiles(configuration["scriptsDir"]);
+        return Directory.EnumerateFiles(AppConfiguration.GetValue("scriptsDir"));
     }
 
     public IEnumerable<FileModel> GetAllScripts(string username)
@@ -51,7 +51,7 @@ public class StorageRepository : RepositoryBase
     
     public bool CheckLocalFile(string name)
     {
-        return File.Exists(configuration["scriptsDir"] + name);
+        return File.Exists(AppConfiguration.GetValue("scriptsDir") + name);
     }
 
     public BlobContainerClient CheckAndCreateContainer(string username)
@@ -85,7 +85,7 @@ public class StorageRepository : RepositoryBase
     {
         try
         {
-            File.Delete(configuration["scriptsDir"] + name);;
+            File.Delete(AppConfiguration.GetValue("scriptsDir") + name);;
         }
         catch (Exception e)
         {
@@ -110,7 +110,7 @@ public class StorageRepository : RepositoryBase
         
         try
         {
-            userContainer.GetBlobClient(name).Upload(configuration["scriptsDir"] + name, true);
+            userContainer.GetBlobClient(name).Upload(AppConfiguration.GetValue("scriptsDir") + name, true);
         }
         catch (Exception e)
         {
@@ -131,10 +131,11 @@ public class StorageRepository : RepositoryBase
         
         try
         {
-            userContainer.GetBlobClient(name).Upload(configuration["scriptsDir"] + name, true);
+            userContainer.GetBlobClient(name).Upload(AppConfiguration.GetValue("scriptsDir") + name, true);
         }
         catch (Exception e)
         {
+            
             return false;
         }
 
