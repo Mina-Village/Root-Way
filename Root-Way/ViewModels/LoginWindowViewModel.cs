@@ -54,7 +54,7 @@ public class LoginWindowViewModel : ViewModelBase
 
     public ICommand LoginCommand { get; }
     public ICommand RegisterCommand { get; }
-    public ICommand ForgotPasswordCommand { get; }
+
 
     public LoginWindowViewModel(Window w)
     {
@@ -62,7 +62,6 @@ public class LoginWindowViewModel : ViewModelBase
         userRepository = new UserRepository();
         LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand);
-        //ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordCommand);
     }
 
     private bool CanExecuteLoginCommand(object obj)

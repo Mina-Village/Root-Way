@@ -13,19 +13,36 @@
     </UserControl.DataContext>
 
 
-    <StackPanel>
-        <TextBox Text="{Binding NewTask, Mode=TwoWay}" Margin="10"/>
-        <Button Content="Add" Command="{Binding AddTaskCommand}" Margin="10"/>
-        <ListBox Items="{Binding Tasks}" Margin="10">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <TextBox Text="{Binding NewTask}" Margin="10"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Crea 10 filas con CheckBoxes y TextBlocks -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Column="0" Grid.Row="0" Content="Add" Command="{Binding AddTaskCommand}" Margin="10"/>
+                <Button Grid.Column="1" Grid.Row="0" Content="Delete" Command="{Binding DeleteTaskCommand}" Margin="10"/>
+            </Grid>
+        </StackPanel>
+        
+
+        <ScrollViewer Name="scroller" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+        <ListBox Items="{Binding Tasks}" SelectedItem="{Binding SelectedItem}" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding}" Margin="5"/>
-                        <Button Content="Delete" Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.DeleteTaskCommand}"
-                                CommandParameter="{Binding}" Margin="5"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>
