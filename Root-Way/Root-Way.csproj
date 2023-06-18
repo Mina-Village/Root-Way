@@ -39,32 +39,5 @@
     <ItemGroup>
       <UpToDateCheckInput Remove="CustomControls\BindablePasswordBox.axaml" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="ViewModels\TargetGrade\TargetGradeWindowModel.cs" />
-      <Compile Remove="ViewModels\TargetGrade\AverageGradeViewModel.cs" />
-      <Compile Remove="ViewModels\BaseClasses\ListViewModelBase.cs" />
-      <Compile Remove="ViewModels\BaseClasses\AddViewModelBase.cs" />
-      <Compile Remove="ViewModels\AddPages\AddGradeViewModel.cs" />
-      <Compile Remove="ViewModels\Lists\SubjectListViewModel.cs" />
-      <Compile Remove="ViewModels\Lists\GradeListViewModel.cs" />
-      <Compile Remove="Models\Elements\BaseClasses\ColorableElement.cs" />
-      <Compile Remove="Models\Elements\Subject.cs" />
-      <Compile Remove="ExtensionCollection\FloatExtensions.cs" />
-      <Compile Remove="ExtensionCollection\ColorExtensions.cs" />
-      <Compile Remove="UtilityCollection\UniversalUtilities.cs" />
-      <Compile Remove="ViewLocator.cs" />
-      <Compile Remove="CustomControls\PanelTemplateSelector.cs" />
-      <Compile Remove="Interfaces\IGradesContainer.cs" />
-      <Compile Remove="Interfaces\IAddViewModel.cs" />
-      <Compile Remove="Interfaces\ITargetGrade.cs" />
-      <Compile Remove="Interfaces\IGradable.cs" />
-      <Compile Remove="Converters\FloatStringConverter.cs" />
-      <Compile Remove="Converters\IntStringConverter.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Models\Elements\" />
-      <Folder Include="Models\Elements\BaseClasses\" />
-    </ItemGroup>
+    
 </Project>
