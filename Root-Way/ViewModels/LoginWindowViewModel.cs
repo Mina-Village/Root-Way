@@ -1,18 +1,6 @@
-using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
-using System.Net.Mime;
-using System.Reactive;
-using System.Reactive.Linq;
-using System.Security;
-using System.Security.Principal;
-using System.Threading;
 using System.Windows.Input;
-using Avalonia;
 using Avalonia.Controls;
-using DynamicData;
-using ReactiveUI;
 using Root_Way.Models;
 using Root_Way.Repositories;
 using Root_Way.Views;
@@ -66,7 +54,7 @@ public class LoginWindowViewModel : ViewModelBase
 
     public ICommand LoginCommand { get; }
     public ICommand RegisterCommand { get; }
-    public ICommand ForgotPasswordCommand { get; }
+
 
     public LoginWindowViewModel(Window w)
     {
@@ -74,7 +62,6 @@ public class LoginWindowViewModel : ViewModelBase
         userRepository = new UserRepository();
         LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand);
-        //ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordCommand);
     }
 
     private bool CanExecuteLoginCommand(object obj)
@@ -90,10 +77,6 @@ public class LoginWindowViewModel : ViewModelBase
             var mainWindow = new MainWindow(Username);
             mainWindow.Show();
             _loginWindow.Close();
-
-            /*Thread.CurrentPrincipal = new GenericPrincipal(
-                new GenericIdentity(Username), null);
-            IsViewVisible = false;*/
         }
         else
         {
