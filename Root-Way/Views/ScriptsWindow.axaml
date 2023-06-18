@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Root_Way.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Root_Way.Views.ScriptsWindow"
+             x:DataType="vm:ScriptsWindowViewModel">
+    
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Crea 10 filas con CheckBoxes y TextBlocks -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Column="0" Grid.Row="0" Content="Refresh" Command="{Binding RefreshCommand}" Margin="10"/>
+                <Button Grid.Column="1" Grid.Row="0" Content="Upload" Command="{Binding UploadCommand}" Margin="10"/>
+                <Button Grid.Column="2" Grid.Row="0" Content="Download" Command="{Binding DownloadCommand}" Margin="10"/>
+                <Button Grid.Column="3" Grid.Row="0" Content="Delete from cloud" Command="{Binding DeleteFromCloudCommand}" Margin="10"/>
+                <Button Grid.Column="4" Grid.Row="0" Content="Delete from local" Command="{Binding DeleteFromLocalCommand}" Margin="10"/>
+            </Grid>
+        </StackPanel>
+        
+
+        <ScrollViewer Name="scroller" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+        <ListBox Items="{Binding Scripts, Mode=TwoWay}" SelectedItem="{Binding SelectedItem}" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" Margin="5"/>
+                        <TextBlock Text="{Binding FileType}" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>
