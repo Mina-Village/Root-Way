@@ -26,15 +26,6 @@ public class App : Application
         {
             desktop.MainWindow = new LoginWindow();
 
-            StorageRepository storage = new StorageRepository();
-
-            foreach (FileModel file in storage.GetAllScripts("mina"))
-            {
-                Console.WriteLine(file.Name + " " + file.FileType);
-            }
-
-            Console.WriteLine(storage.DownloadFile("hello.txt", "mina"));
-
             /*var loginWindow = new LoginWindow();
             loginWindow.Show();
             loginWindow.Closed += (sender, e) =>

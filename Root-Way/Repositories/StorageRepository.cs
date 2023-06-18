@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Azure;
@@ -29,19 +30,19 @@ public class StorageRepository : RepositoryBase
         return Directory.EnumerateFiles(AppConfiguration.GetValue("scriptsDir")).Select(file => file.Split("/").Last());
     }
 
-    public IEnumerable<FileModel> GetAllScripts(string username)
+    public ObservableCollection<FileModel> GetAllScripts(string username)
     {
         IEnumerable<FileModel> cloudScripts = GetScriptCloudList(username).Select(file => new FileModel(){Name = file, FileType = FileType.Cloud});
         IEnumerable<FileModel> localScripts = GetScriptLocalList().Select(file => new FileModel(){Name = file, FileType = FileType.Local});
         
         IEnumerable<FileModel> mergedScripts = cloudScripts.Concat(localScripts);
         
-        return mergedScripts.GroupBy(file => file.Name)
+        return new ObservableCollection<FileModel>(mergedScripts.GroupBy(file => file.Name)
             .Select(group =>
             {
                 FileType newFileType = group.Count() > 1 ? FileType.Both : group.First().FileType;
                 return new FileModel { Name = group.Key, FileType = newFileType };
-            });;
+            }));
     }
     
     public bool CheckLocalFile(string name)

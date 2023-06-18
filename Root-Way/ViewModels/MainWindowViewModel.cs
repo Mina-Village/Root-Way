@@ -80,9 +80,10 @@ public class MainWindowViewModel : ViewModelBase
     public ICommand ShowOsintViewCommand { get; }
     public ICommand ShowEnumerationViewCommand { get; }
     public ICommand ShowExploitationViewCommand { get; }
+    public ICommand ShowScriptsViewCommand { get; }
     public ICommand ForgotPasswordCommand { get; }
     public ICommand CloseSessionCommand { get; }
-    
+
     public MainWindowViewModel(Window w, string Username)
     {
         userRepository = new UserRepository();
@@ -94,6 +95,7 @@ public class MainWindowViewModel : ViewModelBase
         ShowEnumerationViewCommand = new ViewModelCommand(ExecuteShowEnumertaionViewCommand);
         ShowOsintViewCommand = new ViewModelCommand(ExecuteShowOsintViewCommand);
         ShowExploitationViewCommand = new ViewModelCommand(ExecuteShowExploitationViewCommand);
+        ShowScriptsViewCommand = new ViewModelCommand(ExecuteShowScriptsViewCommand);
         ForgotPasswordCommand = new ViewModelCommand(ExecuteForgotPasswordCommand);
         CloseSessionCommand = new ViewModelCommand(ExecuteCloseSessionCommand);
         
@@ -133,6 +135,12 @@ public class MainWindowViewModel : ViewModelBase
     {
         CurrentChildView = new ExploitationWindowViewModel();
         Caption = "Exploitation";
+        //Icon = IconChar.Home;
+    }
+    private void ExecuteShowScriptsViewCommand(object obj)
+    {
+        CurrentChildView = new ScriptsWindowViewModel(CurrentUserAccount);
+        Caption = "Scripts";
         //Icon = IconChar.Home;
     }
     private void ExecuteCloseSessionCommand(object obj)

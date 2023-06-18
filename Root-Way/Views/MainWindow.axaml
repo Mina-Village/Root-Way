@@ -33,6 +33,9 @@
         <DataTemplate DataType="{x:Type vm:ExploitationWindowViewModel}">
             <views:ExploitationWindow/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ScriptsWindowViewModel}">
+            <views:ScriptsWindow/>
+        </DataTemplate>
     </Window.DataTemplates>
 
     <Window.Styles>
@@ -133,21 +136,7 @@
                             <TextBlock Classes="MenuButtonText" Text="Exploitation" />
                         </StackPanel>
                     </Button>
-                    <Button Classes="menuButton">
-                        <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crosshairs"
-                                      Foreground="{StaticResource color5}" />
-                            <TextBlock Classes="MenuButtonText" Text="Post Exploitation" />
-                        </StackPanel>
-                    </Button>
-                    <Button Classes="menuButton">
-                        <StackPanel Orientation="Horizontal">
-                            <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-crown"
-                                      Foreground="{StaticResource color6}" />
-                            <TextBlock Classes="MenuButtonText" Text="Privilege escalation" />
-                        </StackPanel>
-                    </Button>
-                    <Button Classes="menuButton">
+                    <Button Classes="menuButton" Command="{Binding ShowScriptsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-terminal"
                                       Foreground="{StaticResource color8}" />
