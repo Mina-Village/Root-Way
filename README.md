@@ -3,7 +3,7 @@
 ▒█▄▄▀ ▒█░░▒█ ▒█░░▒█ ░▒█░░ 　 ▒█▒█▒█ ▒█▄▄█ ▒█▄▄▄█ \
 ▒█░▒█ ▒█▄▄▄█ ▒█▄▄▄█ ░▒█░░ 　 ▒█▄▀▄█ ▒█░▒█ ░░▒█░░
 
-
+RootWay es una herramienta de prueba de penetración (penetration testing) diseñada para realizar escaneo automatizado de seguridad y evaluaciones de vulnerabilidades en redes y sistemas. Es una suite de pruebas de penetración que proporciona una amplia gama de funcionalidades para identificar y explotar vulnerabilidades en aplicaciones web, redes y sistemas operativos.
 Repositorio del Proyecto y Manual de Usuario
 
 *** Manual de Usuario e Intslación en Google Drive: 
