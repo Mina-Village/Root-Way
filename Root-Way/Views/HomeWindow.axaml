@@ -7,8 +7,25 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Root_Way.Views.HomeWindow"
              x:DataType="vm:HomeWindowViewModel">
+    
+    <UserControl.DataContext>
+        <vm:HomeWindowViewModel />
+    </UserControl.DataContext>
 
-    <Grid>
-        <Image Source="/Assets/fondo.png" />
-    </Grid>
+
+    <StackPanel>
+        <TextBox Text="{Binding NewTask, Mode=TwoWay}" Margin="10"/>
+        <Button Content="Add" Command="{Binding AddTaskCommand}" Margin="10"/>
+        <ListBox Items="{Binding Tasks}" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding}" Margin="5"/>
+                        <Button Content="Delete" Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.DeleteTaskCommand}"
+                                CommandParameter="{Binding}" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
 </UserControl>
