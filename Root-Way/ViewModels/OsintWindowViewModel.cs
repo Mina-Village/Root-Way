@@ -19,7 +19,6 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
 
     public OsintWindowViewModel()
     {
-        //_scanCommand = ReactiveCommand.Create(ScanButton_Click);
         ScanCommand1 = new ViewModelCommand(ExecuteScanCommand);
     }
 
@@ -70,7 +69,6 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
         Process whois = Process.Start(whoisInfo);
         string whoisOutput = whois.StandardOutput.ReadToEnd();
         whois.WaitForExit();
-        //string whoisFilePath = Path.Combine(lootDir, "osint/whois-" + target + ".txt");
         string whoisFilePath = Path.Combine(lootDir, "osint", "whois-" + target + ".txt");
         //create the directory if not exists
         Directory.CreateDirectory(Path.GetDirectoryName(whoisFilePath));

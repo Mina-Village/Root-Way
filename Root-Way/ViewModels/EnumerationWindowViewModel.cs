@@ -53,35 +53,7 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
     {
         //_scanCommand = ReactiveCommand.Create(ScanButton_Click);
         ScanCommand1 = new ViewModelCommand(ExecuteScanCommand);
-        //ScanCommand1 = new ViewModelCommand(ExecuteScanCommand, CanExecuteScanCommand);
         
-        // Escucha los cambios en las propiedades relacionadas y actualiza CanScan
-        /*this.WhenAnyValue(
-                x => x.Target,
-                x => x.Port,
-                x => x.IsServiceDetectionSelected,
-                x => x.IsOsDetectionSelected,
-                x => x.IsAttemptOsGuessingSelected,
-                x => x.IsVerboseModeSelected,
-                x => x.IsHelpSelected,
-                x => x.IsOpenPortsServiceInfoSelected,
-                x => x.IsUdpScanSelected,
-                x => x.IsAggressiveScanSelected,
-                (target, port, isServiceDetectionSelected, isOsDetectionSelected, isAttemptOsGuessingSelected,
-                    isVerboseModeSelected, isHelpSelected, isOpenPortsServiceInfoSelected, isUdpScanSelected,
-                    isAggressiveScanSelected) =>
-                {
-                    return !string.IsNullOrEmpty(target) && (!string.IsNullOrEmpty(port)
-                                                             || isServiceDetectionSelected
-                                                             || isOsDetectionSelected
-                                                             || isAttemptOsGuessingSelected
-                                                             || isVerboseModeSelected
-                                                             || isHelpSelected
-                                                             || isOpenPortsServiceInfoSelected
-                                                             || isUdpScanSelected
-                                                             || isAggressiveScanSelected);
-                })
-            .Subscribe(canScan => CanScan = canScan);*/
     }
     
     /*private bool CanExecuteScanCommand(object obj)
@@ -231,18 +203,21 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
 
     private void ExecuteScanCommand(object obj)
     {
+        Console.WriteLine("test1");
         string target = Target;
         string lootDir = LootDir;
         string? port = Port;
         string nmapArguments = "";
+        Console.WriteLine("test2");
 
         if (string.IsNullOrEmpty(Target) || string.IsNullOrEmpty(LootDir) )
         {
-            Output += "ERROR, Target or Loot directory missing";
+            Output = "ERROR, Target or Loot directory missing";
             return;
         }
+        Console.WriteLine("test3");
 
-        Output += "Starting NMAP scan for " + target + "\n";
+        Output = "Starting NMAP scan for " + target + "\n";
 
         // Verificar los argumentos seleccionados
         //VERSION DETETCTION
@@ -290,6 +265,7 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
         {
             nmapArguments += " " + target;
         }
+        Console.WriteLine("test4");
 
         // Gather NMAP info
         Output += "Gathering ports scan info...\n";

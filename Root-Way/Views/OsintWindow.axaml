@@ -7,29 +7,49 @@
              x:Class="Root_Way.Views.OsintWindow"
              x:DataType="viewModels:OsintWindowViewModel">
     
-    
-    <UserControl.Styles>
-        
-        <!--<Style Selector="TextBox.TargetTextBox:hover">
-            <Setter Property="Background" Value="{StaticResource color2}" />
-            <Setter Property="Foreground" Value="{StaticResource titleColor3}" />
-            <Setter Property="Margin" Value="0,0,0,5" />
-        </Style>
-        <Style Selector="TextBox.TargetTextBox:focus">
-            <Setter Property="Background" Value="Green" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="0,0,0,5" />
-        </Style>-->
-    </UserControl.Styles>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1" />
+        </Grid.ColumnDefinitions>
 
-    <StackPanel>
-        <TextBlock Text="Target" Padding="20"/>
-        <TextBox x:Name="TargetTextBox" Text="{Binding Target, Mode=TwoWay}" Background="{StaticResource winBorderColor2}"/>
-        <TextBlock Text="Loot Directory" Padding="20"/>
-        <TextBox x:Name="LootDirTextBox" Text="{Binding LootDir, Mode=TwoWay}" Background="{StaticResource winBorderColor2}"/>
-        
-        <Button Content="Scan" Command="{Binding ScanCommand1}" Margin="30" HorizontalContentAlignment="Center" HorizontalAlignment="Center" CornerRadius="10" Width="100" Height="30" Background="{StaticResource color2}" Foreground="Black" BorderBrush="{StaticResource color4}"/>
-        <TextBlock x:Name="Output" Text="{Binding Output, Mode=OneWay}"/>
-    </StackPanel>
+        <!-- Crea 10 filas con CheckBoxes y TextBlocks -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <StackPanel Margin="30">
+            <TextBlock Text="This window is designed for conducting OSINT (Open-Source Intelligence) scans." />
+            <TextBlock Text="It allows users to input a target domain and a directory for storing scan results." Margin="10" />
+            <TextBlock Text="Target" Padding="20" Foreground="{StaticResource color9}"/>
+            <TextBox x:Name="TargetTextBox" Text="{Binding Target, Mode=TwoWay}" Background="{StaticResource winBorderColor2}" Width="300" HorizontalAlignment="Left" />
+            <TextBlock Text="Loot Directory" Padding="20" Foreground="{StaticResource color9}"/>
+            <TextBox x:Name="LootDirTextBox" Text="{Binding LootDir, Mode=TwoWay}" Background="{StaticResource winBorderColor2}" Width="300" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="Output" Text="{Binding Output, Mode=OneWay}" Margin="15"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="2" >
+            <Border Width="300" Height="300" CornerRadius="100" BorderBrush="Transparent" BorderThickness="1" Margin="50">
+                <Image Source="/Assets/osint.png" Stretch="Fill"/>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button Grid.Row="1" Grid.Column="2" x:Name="BtnRegister"
+                    Command="{Binding ScanCommand1}"
+                    Content="Scan"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Background="Transparent" 
+                    Foreground="{StaticResource color9}" 
+                    CornerRadius="10"
+                    BorderBrush="{StaticResource color9}"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0">
+            </Button>
+        </StackPanel>
+    </Grid>
 </UserControl>

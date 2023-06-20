@@ -13,27 +13,55 @@
     </UserControl.DataContext>
 
 
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top">
-            <TextBox Text="{Binding NewTask}" Margin="10"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+    
+ <DockPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-                <!-- Crea 10 filas con CheckBoxes y TextBlocks -->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                
-                <Button Grid.Column="0" Grid.Row="0" Content="Add" Command="{Binding AddTaskCommand}" Margin="10"/>
-                <Button Grid.Column="1" Grid.Row="0" Content="Delete" Command="{Binding DeleteTaskCommand}" Margin="10"/>
-            </Grid>
-        </StackPanel>
-        
+        <!-- Crea 10 filas con CheckBoxes y TextBlocks -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <TextBlock Text="Write here your ideas and work efficiently," Margin="10" FontSize="14" Foreground="{StaticResource titleColor1}"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="embracing the challenge of being a skilled" Margin="10" FontSize="14" Foreground="{StaticResource titleColor1}"
+                       HorizontalAlignment="Center" Padding="20"/>
+            <TextBlock Text="pentester! Good luck in your endeavors!" Margin="10" FontSize="14" Foreground="{StaticResource titleColor1}"
+                       HorizontalAlignment="Center" Padding="40"/>
+            <Border Width="250" Height="300" CornerRadius="100" BorderBrush="Transparent" BorderThickness="1" Margin="60">
+                <Image Source="/Assets/home.png" Stretch="Fill"/>
+            </Border>
+        </Grid>
+    </Grid>
+    <StackPanel DockPanel.Dock="Top">
+        <TextBox Text="{Binding NewTask}" Margin="10"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <ScrollViewer Name="scroller" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+            <!-- Crea 10 filas con CheckBoxes y TextBlocks -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Button Grid.Column="0" Grid.Row="0" Content="Add" Command="{Binding AddTaskCommand}" Margin="10" Height="30" Background="Transparent" Foreground="{StaticResource color3}" CornerRadius="10"
+                    BorderBrush="{StaticResource color3}"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="Delete" Command="{Binding DeleteTaskCommand}" Margin="10" Height="30" Background="Transparent" Foreground="{StaticResource color4}" CornerRadius="10"
+                    BorderBrush="{StaticResource color4}"/>
+        </Grid>
+    </StackPanel>
+
+
+    <ScrollViewer Name="scroller" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
         <ListBox Items="{Binding Tasks}" SelectedItem="{Binding SelectedItem}" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -43,6 +71,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        </ScrollViewer>
-    </DockPanel>
+    </ScrollViewer>
+</DockPanel>
+
 </UserControl>

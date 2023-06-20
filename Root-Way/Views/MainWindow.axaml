@@ -9,7 +9,6 @@
         x:Class="Root_Way.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Root_Way"
         TransparencyLevelHint="Transparent"
         Background="Transparent"
         CanResize="False">
@@ -110,7 +109,7 @@
                     <Button Classes="menuButton" Command="{Binding ShowHomeViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-gauge-high"
-                                      Foreground="{StaticResource color1}" />
+                                      Foreground="{StaticResource color6}" />
                             <!--FontSize="20"-->
                             <TextBlock Classes="MenuButtonText" Text="Home" />
                         </StackPanel>
@@ -118,28 +117,28 @@
                     <Button Classes="menuButton" Command="{Binding ShowOsintViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-user-secret"
-                                      Foreground="{StaticResource color2}" />
+                                      Foreground="{StaticResource color7}" />
                             <TextBlock Classes="MenuButtonText" Text="OSINT" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton" Command="{Binding ShowEnumerationViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-arrow-down-1-9"
-                                      Foreground="{StaticResource color3}" />
+                                      Foreground="{StaticResource color8}" />
                             <TextBlock Classes="MenuButtonText" Text="Enumeration" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton" Command="{Binding ShowExploitationViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-spider"
-                                      Foreground="{StaticResource color4}" />
+                                      Foreground="{StaticResource color9}" />
                             <TextBlock Classes="MenuButtonText" Text="Exploitation" />
                         </StackPanel>
                     </Button>
                     <Button Classes="menuButton" Command="{Binding ShowScriptsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <MenuItem Classes="menuButtonIcon" i:MenuItem.Icon="fa-solid fa-terminal"
-                                      Foreground="{StaticResource color8}" />
+                                      Foreground="{StaticResource color10}" />
                             <TextBlock Classes="MenuButtonText" Text="Scripts" />
                         </StackPanel>
                     </Button>
