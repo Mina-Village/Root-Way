@@ -5,7 +5,6 @@
         xmlns:viewModels="clr-namespace:Root_Way.ViewModels"
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
         x:Class="Root_Way.Views.RegisterWindow"
-        Title="RegisterWindow"
         x:DataType="viewModels:RegisterWindowViewModel"
         MaxHeight="600"
         MaxWidth="550"

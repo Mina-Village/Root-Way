@@ -24,7 +24,7 @@
 
 
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">
-                <TextBlock Text="Information" Margin="10" Foreground="{StaticResource color6}" FontSize="16" />
+                <TextBlock Text="Information" Margin="10" Foreground="{StaticResource color5}" FontSize="16" />
                 <TextBlock Text="Target" Margin="10" />
                 <TextBox x:Name="TargetTextBox" Text="{Binding Target, Mode=TwoWay}"
                          Background="{StaticResource winBorderColor2}" Width="150" HorizontalAlignment="Left" />
@@ -37,25 +37,25 @@
 
             <StackPanel Grid.Row="0" Grid.Column="2" Margin="10">
                 <!-- CheckBox y TextBlock para la fila 0 -->
-                <TextBlock Text="Version Detection" Margin="10" Foreground="{StaticResource color6}" FontSize="16" />
+                <TextBlock Text="Version Detection" Margin="10" Foreground="{StaticResource color5}" FontSize="16" />
                 <CheckBox IsChecked="{Binding IsServiceDetectionSelected}" Content="Service detection" />
                 <CheckBox IsChecked="{Binding IsOsDetectionSelected}" Content="OS detection" />
                 <CheckBox IsChecked="{Binding IsAttemptOsGuessingSelected}" Content="Attempt Os guessing" />
                 <CheckBox IsChecked="{Binding IsVerboseModeSelected}" Content="Verbose mode" />
 
-                <TextBlock Text="Port scanning" Margin="10" Foreground="{StaticResource color6}" FontSize="16" />
+                <TextBlock Text="Port scanning" Margin="10" Foreground="{StaticResource color5}" FontSize="16" />
                 <TextBox x:Name="PortTextBox" Text="{Binding Port, Mode=TwoWay}"
                          Background="{StaticResource winBorderColor2}" Width="150" HorizontalAlignment="Left" />
             </StackPanel>
 
             <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="10">
-                <TextBlock Text="Common Switches" Margin="10" Foreground="{StaticResource color6}" FontSize="16" />
+                <TextBlock Text="Common Switches" Margin="10" Foreground="{StaticResource color5}" FontSize="16" />
                 <CheckBox IsChecked="{Binding IsHelpSelected}" Content="Help" />
                 <CheckBox IsChecked="{Binding IsOpenPortsServiceInfoSelected}" Content="Open ports service info" />
                 <CheckBox IsChecked="{Binding IsUdpScanSelected}" Content="UDP scan" />
                 <CheckBox IsChecked="{Binding IsAggressiveScanSelected}" Content="Aggressive scan" />
 
-                <TextBlock Text="Special Scans" Margin="10" Foreground="{StaticResource color6}" FontSize="16" />
+                <TextBlock Text="Special Scans" Margin="10" Foreground="{StaticResource color5}" FontSize="16" />
                 <ComboBox Width="200" SelectedItem="{Binding Test}">
                     <ComboBoxItem Content="TCP Null Scans" />
                     <ComboBoxItem Content="TCP FIN Scans" />
@@ -72,19 +72,17 @@
                         Margin="30" HorizontalContentAlignment="Center"
                         HorizontalAlignment="Center" Width="100" Height="30"
                         Background="Transparent"
-                        Foreground="{StaticResource color4}"
+                        Foreground="{StaticResource color6}"
                         CornerRadius="10"
-                        BorderBrush="{StaticResource color4}" />
+                        BorderBrush="{StaticResource color6}" />
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
                 <TextBlock Text="{Binding ErrorMessage, Mode=OneWay}" Foreground="Red" FontSize="12"
                 HorizontalAlignment="Center" />
                 <TextBlock x:Name="Output"
                            Text="{Binding Output, Mode=OneWay}"
-                           Foreground="{StaticResource color6}" Margin="15" />
+                           Foreground="{StaticResource color8}" Margin="15" />
             </StackPanel>
     </Grid>
-
-        
-
+    
 </UserControl>
