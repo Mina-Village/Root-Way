@@ -77,9 +77,11 @@
                         BorderBrush="{StaticResource color4}" />
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                <TextBlock Text="{Binding ErrorMessage, Mode=OneWay}" Foreground="Red" FontSize="12"
+                HorizontalAlignment="Center" />
                 <TextBlock x:Name="Output"
                            Text="{Binding Output, Mode=OneWay}"
-                           Foreground="{StaticResource color6}" />
+                           Foreground="{StaticResource color6}" Margin="15" />
             </StackPanel>
     </Grid>
 

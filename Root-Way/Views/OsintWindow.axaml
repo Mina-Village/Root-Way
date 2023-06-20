@@ -27,8 +27,10 @@
             <TextBlock Text="Target" Padding="20" Foreground="{StaticResource color9}"/>
             <TextBox x:Name="TargetTextBox" Text="{Binding Target, Mode=TwoWay}" Background="{StaticResource winBorderColor2}" Width="300" HorizontalAlignment="Left" />
             <TextBlock Text="Loot Directory" Padding="20" Foreground="{StaticResource color9}"/>
-            <TextBox x:Name="LootDirTextBox" Text="{Binding LootDir, Mode=TwoWay}" Background="{StaticResource winBorderColor2}" Width="300" HorizontalAlignment="Left"/>
-            <TextBlock x:Name="Output" Text="{Binding Output, Mode=OneWay}" Margin="15"/>
+            <TextBox x:Name="LootDirTextBox" Text="{Binding LootDir, Mode=TwoWay}" Background="{StaticResource winBorderColor2}" Width="300" HorizontalAlignment="Left" />
+            <TextBlock Text="{Binding ErrorMessage, Mode=OneWay}" Foreground="Red" FontSize="12"
+                       HorizontalAlignment="Left" Margin="15"/>
+            <TextBlock x:Name="Output" Text="{Binding Output, Mode=OneWay}" HorizontalAlignment="Left" Margin="15"/>
         </StackPanel>
         
         <StackPanel Grid.Column="2" >

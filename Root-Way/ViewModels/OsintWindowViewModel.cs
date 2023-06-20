@@ -13,6 +13,8 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
     private string _target;
     private string _lootDir;
     private string _output;
+    private string _errorMessage;
+    
     private ICommand _scanCommand;
     
     public ICommand ScanCommand1 { get; }
@@ -43,6 +45,15 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
             OnPropertyChanged(nameof(LootDir));
         }
     }
+    public string ErrorMessage
+    {
+        get => _errorMessage;
+        set
+        {
+            _errorMessage = value;
+            OnPropertyChanged(nameof(ErrorMessage));
+        }
+    }
 
     public string Output
     {
@@ -58,6 +69,14 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
     {
         string target = Target;
         string lootDir = LootDir;
+        
+        if (string.IsNullOrEmpty(Target) || string.IsNullOrEmpty(LootDir) )
+        {
+            ErrorMessage = "ERROR, Target or Loot directory missing";
+            return;
+        }
+        else
+            ErrorMessage = " ";
         
         Output += "Starting OSINT scan for " + target + "\n";
         
@@ -100,7 +119,7 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
         Output += "Email security info saved to " + emailFilePath + "\n";
         
         // Gather UltraTools DNS info
-        Output += "Gathering MxToolBox DNS info...\n";
+        /*Output += "Gathering MxToolBox DNS info...\n";
         string ultraToolsUrl = "https://mxtoolbox.com/SuperTool.aspx?action=mx%3a "+ target + "&run=toolpage" ;
         string ultraToolsFilePath = Path.Combine(lootDir, "osint/ultratools-" + target + ".html");
         using (WebClient client = new WebClient())
@@ -109,7 +128,7 @@ public class OsintWindowViewModel : ViewModelBase, IReactiveObject
             Directory.CreateDirectory(Path.GetDirectoryName(ultraToolsFilePath));
             File.WriteAllText(ultraToolsFilePath, ultraToolsOutput);
         }
-        Output += "UltraTools DNS info saved to " + ultraToolsFilePath + "\n";
+        Output += "UltraTools DNS info saved to " + ultraToolsFilePath + "\n";*/
     }
 
     /*private void ScanButton_Click()

@@ -20,6 +20,7 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
     private string? _port;
     private string _lootDir;
     private string _output;
+    private string _errorMessage;
     
     private bool _isServiceDetectionSelected;
     private bool _isOsDetectionSelected;
@@ -32,22 +33,8 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
     private bool _isAggressiveScanSelected;
 
     private ComboBoxItem _test;
-    
-    //private ICommand _scanCommand;
-    
-    public ICommand ScanCommand1 { get; }
-    
-    /*private bool _canScan;
 
-    public bool CanScan
-    {
-        get => _canScan;
-        set
-        {
-            _canScan = value;
-            OnPropertyChanged(nameof(CanScan));
-        }
-    }*/
+    public ICommand ScanCommand1 { get; }
 
     public EnumerationWindowViewModel()
     {
@@ -55,14 +42,6 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
         ScanCommand1 = new ViewModelCommand(ExecuteScanCommand);
         
     }
-    
-    /*private bool CanExecuteScanCommand(object obj)
-    {
-        return CanScan;
-    }*/
-    
-
-   // public ICommand ScanCommand => _scanCommand;
 
     public string Target
     {
@@ -91,6 +70,16 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
         {
             _output = value;
             OnPropertyChanged(nameof(Output));
+        }
+    }
+    
+    public string ErrorMessage
+    {
+        get => _errorMessage;
+        set
+        {
+            _errorMessage = value;
+            OnPropertyChanged(nameof(ErrorMessage));
         }
     }
     
@@ -203,19 +192,18 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
 
     private void ExecuteScanCommand(object obj)
     {
-        Console.WriteLine("test1");
         string target = Target;
         string lootDir = LootDir;
         string? port = Port;
         string nmapArguments = "";
-        Console.WriteLine("test2");
 
         if (string.IsNullOrEmpty(Target) || string.IsNullOrEmpty(LootDir) )
         {
-            Output = "ERROR, Target or Loot directory missing";
+            ErrorMessage = "ERROR, Target or Loot directory missing";
             return;
         }
-        Console.WriteLine("test3");
+        else
+            ErrorMessage = " ";
 
         Output = "Starting NMAP scan for " + target + "\n";
 
@@ -265,7 +253,6 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
         {
             nmapArguments += " " + target;
         }
-        Console.WriteLine("test4");
 
         // Gather NMAP info
         Output += "Gathering ports scan info...\n";
