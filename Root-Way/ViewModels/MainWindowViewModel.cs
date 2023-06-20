@@ -100,7 +100,7 @@ public class MainWindowViewModel : ViewModelBase
         CloseSessionCommand = new ViewModelCommand(ExecuteCloseSessionCommand);
         
         //Default view
-        //ExecuteShowHomeViewCommand(null);
+        ExecuteShowHomeViewCommand(null);
         //LoadCurrentUserData();
     }
     

@@ -20,6 +20,7 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
     private string? _port;
     private string _lootDir;
     private string _output;
+    private string _errorMessage;
     
     private bool _isServiceDetectionSelected;
     private bool _isOsDetectionSelected;
@@ -32,65 +33,15 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
     private bool _isAggressiveScanSelected;
 
     private ComboBoxItem _test;
-    
-    //private ICommand _scanCommand;
-    
-    public ICommand ScanCommand1 { get; }
-    
-    /*private bool _canScan;
 
-    public bool CanScan
-    {
-        get => _canScan;
-        set
-        {
-            _canScan = value;
-            OnPropertyChanged(nameof(CanScan));
-        }
-    }*/
+    public ICommand ScanCommand1 { get; }
 
     public EnumerationWindowViewModel()
     {
         //_scanCommand = ReactiveCommand.Create(ScanButton_Click);
         ScanCommand1 = new ViewModelCommand(ExecuteScanCommand);
-        //ScanCommand1 = new ViewModelCommand(ExecuteScanCommand, CanExecuteScanCommand);
         
-        // Escucha los cambios en las propiedades relacionadas y actualiza CanScan
-        /*this.WhenAnyValue(
-                x => x.Target,
-                x => x.Port,
-                x => x.IsServiceDetectionSelected,
-                x => x.IsOsDetectionSelected,
-                x => x.IsAttemptOsGuessingSelected,
-                x => x.IsVerboseModeSelected,
-                x => x.IsHelpSelected,
-                x => x.IsOpenPortsServiceInfoSelected,
-                x => x.IsUdpScanSelected,
-                x => x.IsAggressiveScanSelected,
-                (target, port, isServiceDetectionSelected, isOsDetectionSelected, isAttemptOsGuessingSelected,
-                    isVerboseModeSelected, isHelpSelected, isOpenPortsServiceInfoSelected, isUdpScanSelected,
-                    isAggressiveScanSelected) =>
-                {
-                    return !string.IsNullOrEmpty(target) && (!string.IsNullOrEmpty(port)
-                                                             || isServiceDetectionSelected
-                                                             || isOsDetectionSelected
-                                                             || isAttemptOsGuessingSelected
-                                                             || isVerboseModeSelected
-                                                             || isHelpSelected
-                                                             || isOpenPortsServiceInfoSelected
-                                                             || isUdpScanSelected
-                                                             || isAggressiveScanSelected);
-                })
-            .Subscribe(canScan => CanScan = canScan);*/
     }
-    
-    /*private bool CanExecuteScanCommand(object obj)
-    {
-        return CanScan;
-    }*/
-    
-
-   // public ICommand ScanCommand => _scanCommand;
 
     public string Target
     {
@@ -119,6 +70,16 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
         {
             _output = value;
             OnPropertyChanged(nameof(Output));
+        }
+    }
+    
+    public string ErrorMessage
+    {
+        get => _errorMessage;
+        set
+        {
+            _errorMessage = value;
+            OnPropertyChanged(nameof(ErrorMessage));
         }
     }
     
@@ -238,11 +199,13 @@ public class EnumerationWindowViewModel : ViewModelBase, IReactiveObject
 
         if (string.IsNullOrEmpty(Target) || string.IsNullOrEmpty(LootDir) )
         {
-            Output += "ERROR, Target or Loot directory missing";
+            ErrorMessage = "ERROR, Target or Loot directory missing";
             return;
         }
+        else
+            ErrorMessage = " ";
 
-        Output += "Starting NMAP scan for " + target + "\n";
+        Output = "Starting NMAP scan for " + target + "\n";
 
         // Verificar los argumentos seleccionados
         //VERSION DETETCTION

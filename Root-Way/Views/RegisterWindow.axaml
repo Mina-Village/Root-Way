@@ -5,7 +5,6 @@
         xmlns:viewModels="clr-namespace:Root_Way.ViewModels"
         mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
         x:Class="Root_Way.Views.RegisterWindow"
-        Title="RegisterWindow"
         x:DataType="viewModels:RegisterWindowViewModel"
         MaxHeight="600"
         MaxWidth="550"
@@ -17,14 +16,29 @@
     
     <Border>
         <Border.Background>
-            <LinearGradientBrush StartPoint="100%,100%" EndPoint="0%,0%">
-                <LinearGradientBrush.GradientStops>
-                    <GradientStop Offset="0" Color="{StaticResource winBorderColor1}" />
-                    <GradientStop Offset="0.5" Color="{StaticResource winBorderColor2}" />
-                    <GradientStop Offset="1" Color="{StaticResource winBorderColor3}" />
-                </LinearGradientBrush.GradientStops>
-            </LinearGradientBrush>
+            <ImageBrush Source="/Assets/register1.jpg"
+                        Stretch="UniformToFill"/>
         </Border.Background>
+        <Border BorderThickness="2"
+                Opacity="0.60">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="100%,100%" EndPoint="0%,0%">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="{StaticResource winBorderColor1}" />
+                        <GradientStop Offset="0.5" Color="{StaticResource winBorderColor2}" />
+                        <GradientStop Offset="1" Color="{StaticResource winBorderColor3}" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="100%,100%" EndPoint="0%,0%">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Offset="0" Color="{StaticResource winBorderColor1}" />
+                        <GradientStop Offset="0.5" Color="{StaticResource winBorderColor2}" />
+                        <GradientStop Offset="1" Color="{StaticResource winBorderColor3}" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.Background>
         
         <Grid>
             <Grid.RowDefinitions>
@@ -59,14 +73,14 @@
                     
 
                     <TextBlock Text="ROOT WAY"
-                               Foreground="{StaticResource titleColor1}"
+                               Foreground="White"
                                FontSize="20"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
 
                     <TextBlock Text="Regsiter in your pentesting software with our security lab."
-                               Foreground="{StaticResource color8}"
+                               Foreground="LightGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -75,7 +89,7 @@
                                Margin="0,20,0,0"/>
 
                     <TextBlock Text="Username"
-                               Foreground="{StaticResource plainTextColor1}"
+                               Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -86,8 +100,8 @@
                                FontSize="13"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               Foreground="{StaticResource plainTextColor1}"
-                               CaretBrush="{StaticResource plainTextColor1}"
+                               Foreground="White"
+                               CaretBrush="LightGray"
                                BorderBrush="{StaticResource plainTextColor1}"
                                BorderThickness="0,0,0,1"
                                Height="28"
@@ -102,7 +116,7 @@
                     </TextBox>
 
                     <TextBlock Text="Password"
-                               Foreground="{StaticResource plainTextColor1}"
+                               Foreground="darkGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -113,8 +127,8 @@
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"
-                             Foreground="{StaticResource plainTextColor1}"
-                             CaretBrush="{StaticResource plainTextColor1}"
+                             Foreground="White"
+                             CaretBrush="LightGray"
                              BorderBrush="{StaticResource plainTextColor1}"
                              BorderThickness="0,0,0,1"
                              Height="28"
@@ -130,19 +144,19 @@
                     
                     <Button x:Name="BtnRegister"
                             Command="{Binding RegisterCommand}"
-                            BorderThickness="0"
                             Content="REGISTER"
                             Background="Transparent" 
-                            Foreground="{StaticResource color8}"
-                            BorderBrush="{StaticResource color8}" 
+                            Foreground="{StaticResource color9}" 
+                            CornerRadius="10"
+                            BorderBrush="{StaticResource color9}"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            CornerRadius="10"
                             Grid.Column="2"
                             Margin="90,50,0,0">
                     </Button>
                 </StackPanel>
             </Grid>
         </Border>
+    </Border>
 </Window>

@@ -23,11 +23,46 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 
-                <Button Grid.Column="0" Grid.Row="0" Content="Refresh" Command="{Binding RefreshCommand}" Margin="10"/>
-                <Button Grid.Column="1" Grid.Row="0" Content="Upload" Command="{Binding UploadCommand}" Margin="10"/>
-                <Button Grid.Column="2" Grid.Row="0" Content="Download" Command="{Binding DownloadCommand}" Margin="10"/>
-                <Button Grid.Column="3" Grid.Row="0" Content="Delete from cloud" Command="{Binding DeleteFromCloudCommand}" Margin="10"/>
-                <Button Grid.Column="4" Grid.Row="0" Content="Delete from local" Command="{Binding DeleteFromLocalCommand}" Margin="10"/>
+                <Button Grid.Column="0" Grid.Row="0" 
+                        Content="Refresh" 
+                        Command="{Binding RefreshCommand}" 
+                        Margin="10"
+                        Background="Transparent" 
+                        Foreground="{StaticResource color5}" 
+                        CornerRadius="10"
+                        BorderBrush="{StaticResource color5}"/>
+                
+                <Button Grid.Column="1" Grid.Row="0" Content="Upload" 
+                        Command="{Binding UploadCommand}" 
+                        Margin="10"
+                        Background="Transparent" 
+                        Foreground="{StaticResource color8}" 
+                        CornerRadius="10"
+                        BorderBrush="{StaticResource color8}"/>
+                
+                <Button Grid.Column="2" Grid.Row="0" Content="Download" 
+                        Command="{Binding DownloadCommand}" 
+                        Margin="10"
+                        Background="Transparent" 
+                        Foreground="{StaticResource color9}" 
+                        CornerRadius="10"
+                        BorderBrush="{StaticResource color9}"/>
+                
+                <Button Grid.Column="3" Grid.Row="0" Content="Delete from cloud" 
+                        Command="{Binding DeleteFromCloudCommand}" 
+                        Margin="10"
+                        Background="Transparent" 
+                        Foreground="{StaticResource color6}" 
+                        CornerRadius="10"
+                        BorderBrush="{StaticResource color6}"/>
+                
+                <Button Grid.Column="4" Grid.Row="0" Content="Delete from local" 
+                        Command="{Binding DeleteFromLocalCommand}" 
+                        Margin="10"
+                        Background="Transparent" 
+                        Foreground="{StaticResource color7}" 
+                        CornerRadius="10"
+                        BorderBrush="{StaticResource color7}"/>
             </Grid>
         </StackPanel>
         
