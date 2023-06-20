@@ -17,7 +17,7 @@ Este proyecto requiere un archivo de configuración JSON con los siguientes par�
 - scriptsDir: Ruta absoluta al directorio que contiene los scripts necesarios. Example --> ("scriptsDir": "/home/YourUser/Desktop/Scripts/")
 - target: Dirección IP del objetivo con el que se trabajará. Example --> ("target": "YourDefaultIP")
 - lootDir: Ruta absoluta al directorio donde se guardarán los resultados. Example --> ("lootDir": "/home/YourUser/Desktop/")
-- 
+  
 Antes de ejecutar la aplicación, asegúrate de completar correctamente estos parámetros en el archivo de configuración.
 
 
